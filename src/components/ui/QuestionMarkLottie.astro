@@ -1,0 +1,51 @@
+---
+// Blouse recolored from the source asset's yellow to the brand's rose-deep
+// (see src/assets/lottie/question-mark-lady.json - derived copy, original
+// kept untouched in Assets/). Plays while in view, pauses out of view;
+// respects prefers-reduced-motion by resting on the last frame.
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+---
+
+<div
+  id="tcc-lottie"
+  class:list={['mx-auto w-full', className]}
+  role="img"
+  aria-label="Ilustração de uma pessoa pensativa, com um ponto de interrogação ao lado"
+>
+</div>
+
+<script>
+  import lottie from 'lottie-web';
+  import animationData from '@/assets/lottie/question-mark-lady.json';
+
+  const el = document.getElementById('tcc-lottie');
+
+  if (el) {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const anim = lottie.loadAnimation({
+      container: el,
+      renderer: 'svg',
+      loop: !reducedMotion,
+      autoplay: false,
+      animationData,
+    });
+
+    if (reducedMotion) {
+      anim.addEventListener('DOMLoaded', () => anim.goToAndStop(anim.totalFrames - 1, true));
+    } else {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) anim.play();
+            else anim.pause();
+          });
+        },
+        { threshold: 0.3 }
+      );
+      observer.observe(el);
+    }
+  }
+</script>

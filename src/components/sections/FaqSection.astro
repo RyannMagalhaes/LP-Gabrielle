@@ -7,9 +7,27 @@ import { FAQ_ITEMS } from '@/data/faq';
 
 <section id="duvidas" class="py-20 md:py-32">
   <Container class="md:grid md:grid-cols-12 md:gap-8">
-    <SectionHeading data-reveal size="h2" class="max-w-[16ch] md:col-span-4">
-      Talvez você ainda tenha algumas dúvidas.
-    </SectionHeading>
+    <div class="md:col-span-4">
+      <svg
+        data-reveal
+        class="organic-line mb-5 h-4 w-16"
+        viewBox="0 0 64 16"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <path
+          pathLength="1"
+          d="M1 9C9 15 15 2 23 7S37 15 45 8 57 1 63 8"
+          stroke="var(--color-rose-deep)"
+          stroke-opacity="0.5"
+          stroke-width="1.5"
+          fill="none"
+        />
+      </svg>
+      <SectionHeading data-reveal size="h2" class="max-w-[16ch]">
+        Talvez você ainda tenha algumas dúvidas.
+      </SectionHeading>
+    </div>
 
     <div data-reveal data-reveal-delay="100" class="mt-10 md:col-span-8 md:mt-0">
       <Accordion items={FAQ_ITEMS} />

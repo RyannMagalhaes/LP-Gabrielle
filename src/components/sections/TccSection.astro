@@ -2,7 +2,8 @@
 import { Image } from 'astro:assets';
 import Container from '@/components/ui/Container.astro';
 import SectionHeading from '@/components/ui/SectionHeading.astro';
-import TccDiagram from '@/components/ui/TccDiagram.astro';
+import CognitiveModelDiagram from '@/components/ui/CognitiveModelDiagram.astro';
+import QuestionMarkLottie from '@/components/ui/QuestionMarkLottie.astro';
 import tccPhoto from '@/assets/photos/tcc-context.jpg';
 ---
 
@@ -15,39 +16,67 @@ import tccPhoto from '@/assets/photos/tcc-context.jpg';
         width={1400}
         loading="lazy"
         decoding="async"
-        class="aspect-[16/9] w-full mask-organic-1 object-cover object-[30%_40%] md:aspect-[21/9] md:object-[35%_45%]"
+        class="aspect-[16/9] w-full rounded-image-lg object-cover object-[30%_40%] md:aspect-[21/9] md:object-[35%_45%]"
       />
     </div>
   </Container>
 
-  <Container class="grid items-center gap-14 md:grid-cols-12 md:gap-8">
-    <div class="order-2 md:order-1 md:col-span-5" data-reveal data-reveal-delay="90">
-      <SectionHeading size="h2" class="max-w-[16ch]">
-        Um processo para compreender a ansiedade e construir novas formas de lidar com ela.
-      </SectionHeading>
-      <p class="mt-6 max-w-[52ch] font-body text-body-lg text-muted">
-        A Terapia Cognitivo-Comportamental (TCC) é uma abordagem baseada em evidências
-        científicas e amplamente reconhecida pela eficácia no tratamento da ansiedade.
-      </p>
-      <p class="mt-4 max-w-[52ch] font-body text-body-lg text-muted">
-        Na prática, ela ajuda você a entender como seus pensamentos influenciam suas
-        emoções e seus comportamentos. Muitas vezes, a ansiedade faz a mente entrar em um
-        ciclo de preocupações, cobranças e inseguranças — e a terapia ajuda a identificar
-        esses padrões com mais clareza.
-      </p>
-      <p class="mt-4 max-w-[52ch] font-body text-body-lg text-muted">
-        Ao longo do processo, você aprende estratégias para lidar com esses pensamentos de
-        forma mais saudável, reduzindo o impacto da ansiedade no dia a dia e desenvolvendo
-        mais autonomia para enfrentar os desafios da vida.
-      </p>
-      <p class="mt-4 max-w-[52ch] font-body text-body-lg text-muted">
-        Cada acompanhamento é único. A terapia é construída de forma colaborativa,
-        respeitando sua história, seu contexto e os objetivos que fazem sentido para você.
-      </p>
+  <Container>
+    <div class="grid gap-10 md:grid-cols-12 md:gap-8">
+      <div class="md:col-span-5" data-reveal data-reveal-delay="90">
+        <svg
+          data-reveal
+          class="organic-line mb-5 h-4 w-16"
+          viewBox="0 0 64 16"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <path
+            pathLength="1"
+            d="M1 8C10 2 16 14 24 9S38 1 46 8 58 14 63 7"
+            stroke="var(--color-rose-deep)"
+            stroke-opacity="0.5"
+            stroke-width="1.5"
+            fill="none"
+          />
+        </svg>
+        <SectionHeading size="h2" class="max-w-[16ch]">
+          Um processo para compreender a ansiedade e construir novas formas de lidar com ela.
+        </SectionHeading>
+      </div>
     </div>
 
-    <div class="order-1 md:order-2 md:col-span-7">
-      <TccDiagram />
+    <div class="mt-8 grid items-stretch gap-10 md:grid-cols-12 md:gap-8">
+      <div class="md:col-span-5" data-reveal data-reveal-delay="100">
+        <p class="max-w-[52ch] font-body text-body-lg text-muted">
+          A Terapia Cognitivo-Comportamental (TCC) é uma abordagem baseada em evidências
+          científicas e amplamente reconhecida pela eficácia no tratamento da ansiedade.
+        </p>
+        <p class="mt-4 max-w-[52ch] font-body text-body-lg text-muted">
+          Na prática, ela ajuda você a entender como seus pensamentos influenciam suas
+          emoções e seus comportamentos. Muitas vezes, a ansiedade faz a mente entrar em um
+          ciclo de preocupações, cobranças e inseguranças — e a terapia ajuda a identificar
+          esses padrões com mais clareza.
+        </p>
+        <p class="mt-4 max-w-[52ch] font-body text-body-lg text-muted">
+          Ao longo do processo, você aprende estratégias para lidar com esses pensamentos de
+          forma mais saudável, reduzindo o impacto da ansiedade no dia a dia e desenvolvendo
+          mais autonomia para enfrentar os desafios da vida.
+        </p>
+        <p class="mt-4 max-w-[52ch] font-body text-body-lg text-muted">
+          Cada acompanhamento é único. A terapia é construída de forma colaborativa,
+          respeitando sua história, seu contexto e os objetivos que fazem sentido para você.
+        </p>
+      </div>
+
+      <div class="flex flex-col justify-between gap-8 md:col-span-7">
+        <div class="flex items-center justify-center">
+          <QuestionMarkLottie class="w-full max-w-[220px] md:max-w-[260px]" />
+        </div>
+        <div data-reveal data-reveal-delay="60">
+          <CognitiveModelDiagram />
+        </div>
+      </div>
     </div>
   </Container>
 </section>

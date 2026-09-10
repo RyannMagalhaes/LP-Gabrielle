@@ -4,11 +4,18 @@
 // this component only changes rendered size and which official color variant
 // is shown, never recolors pixels.
 import { Image } from 'astro:assets';
-import verticalLogo from '@/assets/brand/logo/Verde_VerticalPNG_RGB.png';
+// The official master PNGs sit on a huge print-clear-space artboard (see
+// scripts/prepare-brand-assets.mjs), so a raw import here renders the mark
+// far smaller than its pixel width suggests. Logo.astro always uses the
+// trimmed derivatives (clear-space cropped, pixels/colors untouched) so the
+// widthPx prop maps to the actual visible mark - not mostly transparent
+// padding. Every other OrganicShape placement keeps using the untouched
+// padded source it was already tuned against.
+import verticalLogo from '@/assets/brand-derived/logo-vertical-trimmed.png';
 // Mobile/compact mark uses the derived ink recolor (not the raw terracotta
 // original) so it stays consistent with the site's own palette rather than
 // the separate raw brand-exploration colors - see project README.
-import symbolInk from '@/assets/brand-derived/symbol-ink.png';
+import symbolInk from '@/assets/brand-derived/symbol-ink-trimmed.png';
 
 interface Props {
   variant?: 'full' | 'symbol';

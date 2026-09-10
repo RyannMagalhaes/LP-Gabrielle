@@ -5,8 +5,51 @@ import OrganicShape from '@/components/ui/OrganicShape.astro';
 import emotionalBreakPhoto from '@/assets/photos/emotional-break.jpg';
 ---
 
-<section id="respiro" class="py-24 md:py-36">
-  <Container class="flex flex-col items-center text-center">
+<section id="respiro" class="relative overflow-hidden py-24 md:py-36">
+  <!-- Fills the wide empty margins either side of the centered photo with two
+       of the brand book's official vector marks (hook/loop, heart outline -
+       "Elementos Gráficos" page), not more copies of the bird+leaf symbol.
+       Motion is deliberately different from the growing rings elsewhere: the
+       stroke draws itself while the mark settles out of a slight rotation -
+       a turning gesture, not another "blooming" one. See initScrollDraw. -->
+  <svg
+    data-scroll-draw="-26"
+    class="pointer-events-none absolute left-[6%] top-1/2 hidden h-28 w-28 -translate-y-[65%] opacity-0 md:block lg:h-36 lg:w-36"
+    viewBox="0 0 120 120"
+    fill="none"
+    aria-hidden="true"
+  >
+    <path
+      pathLength="1"
+      stroke-dasharray="1"
+      d="M14 96C14 60 34 30 62 26C82 23 96 36 94 52C92 66 76 72 66 62C59 55 61 44 70 42"
+      stroke="var(--color-rose-deep)"
+      stroke-opacity="0.55"
+      stroke-width="3"
+      stroke-linecap="round"
+    />
+  </svg>
+
+  <svg
+    data-scroll-draw="24"
+    class="pointer-events-none absolute right-[7%] top-1/2 hidden h-24 w-24 -translate-y-[30%] opacity-0 md:block lg:h-32 lg:w-32"
+    viewBox="0 0 120 120"
+    fill="none"
+    aria-hidden="true"
+  >
+    <path
+      pathLength="1"
+      stroke-dasharray="1"
+      d="M60 100C25 76 6 54 6 33C6 15 20 6 34 12C46 17 56 28 60 36C64 28 74 17 86 12C100 6 114 15 114 33C114 54 95 76 60 100Z"
+      stroke="var(--color-rose-deep)"
+      stroke-opacity="0.5"
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+
+  <Container class="relative flex flex-col items-center text-center">
     <div data-reveal class="relative w-full max-w-[360px] md:max-w-[420px]">
       <div data-parallax="16">
         <Image
@@ -15,7 +58,7 @@ import emotionalBreakPhoto from '@/assets/photos/emotional-break.jpg';
           width={640}
           loading="lazy"
           decoding="async"
-          class="aspect-[2/3] w-full mask-organic-2 object-cover object-[50%_45%]"
+          class="aspect-[2/3] w-full mask-organic-4 object-cover object-[50%_45%]"
         />
       </div>
 

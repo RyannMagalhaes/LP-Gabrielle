@@ -6,7 +6,7 @@ import { PROCESS_STEPS } from '@/data/process-steps';
 import processPhoto from '@/assets/photos/process-remote.jpg';
 ---
 
-<section id="como-funciona" class="overflow-hidden py-20 md:py-32">
+<section id="como-funciona" class="overflow-hidden bg-surface-soft py-20 md:py-32">
   <Container class="grid gap-14 md:grid-cols-12 md:items-end md:gap-10">
     <div class="md:order-1 md:col-span-8">
       <SectionHeading data-reveal size="h2" class="max-w-[16ch]">
@@ -26,7 +26,7 @@ import processPhoto from '@/assets/photos/process-remote.jpg';
               >
                 <span
                   class:list={[
-                    'relative z-10 flex h-[26px] w-[26px] flex-shrink-0 items-center justify-center rounded-full border-2 bg-canvas',
+                    'relative z-10 flex h-[26px] w-[26px] flex-shrink-0 items-center justify-center rounded-full border-2 bg-surface-soft',
                     step.emphasis ? 'border-rose-deep' : 'border-ink/30',
                   ]}
                   aria-hidden="true"

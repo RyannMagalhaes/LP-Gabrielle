@@ -90,6 +90,30 @@ async function generateDerivedSymbols() {
   return { inkBuffer, roseDeepBuffer };
 }
 
+/**
+ * The official master PNGs (vertical lockup + symbol) are exported on a huge
+ * square artboard with generous print clear-space, so the visible mark only
+ * fills a fraction of the image bounds. Rendered at compact web sizes (the
+ * header logo, the compact mobile mark) that clear-space reads as "the logo
+ * is tiny" - it isn't undersized, the source canvas is mostly transparent.
+ * These trims are ONLY for those two compact-UI uses; every other OrganicShape
+ * placement (Hero/FinalCta corner marks, CarePrinciples blob, MediaPlaceholder
+ * watermark) was sized and positioned against the untouched padded source and
+ * must keep using it unchanged.
+ */
+async function generateTrimmedLogoAssets(inkBuffer) {
+  const trimmedLogo = await sharp(LOGO_VERTICAL).trim().png().toBuffer();
+  const trimmedSymbol = await sharp(inkBuffer).trim().png().toBuffer();
+
+  await sharp(trimmedLogo).toFile(path.join(ASSETS_DERIVED, 'logo-vertical-trimmed.png'));
+  await sharp(trimmedSymbol).toFile(path.join(ASSETS_DERIVED, 'symbol-ink-trimmed.png'));
+
+  await sharp(trimmedLogo).toFile(path.join(SRC_DERIVED, 'logo-vertical-trimmed.png'));
+  await sharp(trimmedSymbol).toFile(path.join(SRC_DERIVED, 'symbol-ink-trimmed.png'));
+
+  console.log('Generated trimmed logo/symbol (clear-space cropped) for compact UI use.');
+}
+
 async function generateFavicons(inkBuffer) {
   const trimmed = await sharp(inkBuffer).trim().toBuffer();
 
@@ -147,6 +171,7 @@ async function main() {
   await ensureDirs();
   await copyOfficialPngs();
   const { inkBuffer } = await generateDerivedSymbols();
+  await generateTrimmedLogoAssets(inkBuffer);
   await generateFavicons(inkBuffer);
   await generateOgImage(inkBuffer);
   console.log('\nBrand asset prep complete.');

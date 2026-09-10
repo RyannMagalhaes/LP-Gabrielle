@@ -27,7 +27,7 @@ import finalCtaPhoto from '@/assets/photos/final-cta.jpg';
       </p>
     </div>
 
-    <div data-reveal data-reveal-delay="120" class="order-1 md:order-2 md:col-span-5">
+    <div data-reveal data-reveal-delay="120" class="relative order-1 md:order-2 md:col-span-5">
       <Image
         src={finalCtaPhoto}
         alt="Gabrielle Favere, disponível para atendimento"
@@ -36,6 +36,17 @@ import finalCtaPhoto from '@/assets/photos/final-cta.jpg';
         decoding="async"
         class="aspect-[4/5] w-full mask-organic-1 object-cover object-[50%_12%] md:object-[50%_20%]"
       />
+
+      <div
+        class="pointer-events-none absolute -bottom-6 right-2 h-24 w-24 overflow-hidden rounded-block-sm md:-bottom-8 md:right-6 md:h-28 md:w-28"
+        aria-hidden="true"
+      >
+        <OrganicShape
+          variant="rose-deep"
+          widthPx={220}
+          class="h-auto w-[220px] max-w-none translate-x-6 translate-y-4 rotate-[174deg]"
+        />
+      </div>
     </div>
   </Container>
 </section>

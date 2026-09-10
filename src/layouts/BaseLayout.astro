@@ -41,8 +41,11 @@ const { title, description } = Astro.props;
 
     <script>
       import { initScrollReveal, initParallax } from '@/lib/motion';
+      import { initScrollGrow, initScrollDraw } from '@/lib/scroll-grow';
       initScrollReveal();
       initParallax();
+      initScrollGrow();
+      initScrollDraw();
     </script>
   </body>
 </html>

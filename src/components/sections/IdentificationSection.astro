@@ -1,6 +1,7 @@
 ---
 import Container from '@/components/ui/Container.astro';
 import SectionHeading from '@/components/ui/SectionHeading.astro';
+import OrganicShape from '@/components/ui/OrganicShape.astro';
 import { IDENTIFICATION_POINTS } from '@/data/identification-points';
 
 const indentClass = ['md:ml-0 md:text-left', 'md:ml-10 md:text-left', 'md:ml-0 md:text-left', 'md:ml-20 md:text-left'];
@@ -8,7 +9,37 @@ const textAlignMobile = ['text-left', 'text-right', 'text-left', 'text-right'];
 const gapClass = ['', 'mt-14 md:mt-16', 'mt-10 md:mt-12', 'mt-16 md:mt-20'];
 ---
 
-<section id="identificacao" class="py-20 md:py-32">
+<section id="identificacao" class="relative overflow-hidden bg-surface-soft py-20 md:py-32">
+  <!-- Fills the empty right rail on wide screens with three brand elements,
+       each growing up as the reader scrolls past it (scroll-scrubbed via GSAP
+       ScrollTrigger, see src/lib/scroll-grow.ts) rather than fading in at once.
+       The top/bottom rings quote the brand book's own recurring device: a
+       thick ring cropped by the frame edge, "emerging" from and "returning"
+       to the boundary - seen on nearly every brand book page (cover, cards,
+       social templates). Hidden by default so nothing flashes before the
+       script runs. -->
+  <div class="pointer-events-none absolute inset-0 hidden lg:block" aria-hidden="true">
+    <div
+      data-grow
+      class="absolute -right-20 -top-20 h-[260px] w-[260px] rounded-full border-[36px] border-rose-deep/60 xl:-right-24 xl:-top-24 xl:h-[320px] xl:w-[320px] xl:border-[44px]"
+      style="clip-path: inset(100% 0 0 0); opacity: 0;"
+    >
+    </div>
+
+    <div class="absolute inset-y-0 right-0 flex w-[420px] items-center justify-center xl:w-[560px]">
+      <div data-grow class="w-full" style="clip-path: inset(100% 0 0 0); opacity: 0;">
+        <OrganicShape variant="rose-deep" widthPx={700} class="h-auto w-full opacity-60" />
+      </div>
+    </div>
+
+    <div
+      data-grow
+      class="absolute -right-14 -bottom-24 h-[220px] w-[220px] rounded-full border-[30px] border-rose-deep/45 xl:-right-16 xl:h-[270px] xl:w-[270px] xl:border-[36px]"
+      style="clip-path: inset(100% 0 0 0); opacity: 0;"
+    >
+    </div>
+  </div>
+
   <Container class="relative">
     <div data-reveal class="max-w-[38ch] md:max-w-[46ch]">
       <SectionHeading size="h2">Talvez você tenha se acostumado a viver em estado de alerta</SectionHeading>
@@ -27,7 +58,7 @@ const gapClass = ['', 'mt-14 md:mt-16', 'mt-10 md:mt-12', 'mt-16 md:mt-20'];
     <div class="relative mt-16 max-w-[62ch] md:ml-4 md:pl-6">
       <svg
         data-reveal
-        class="identification-line pointer-events-none absolute -left-2 top-0 hidden h-full w-6 md:block"
+        class="organic-line pointer-events-none absolute -left-2 top-0 hidden h-full w-6 md:block"
         viewBox="0 0 24 400"
         preserveAspectRatio="none"
         aria-hidden="true"
