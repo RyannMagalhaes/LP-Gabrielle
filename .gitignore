@@ -16,3 +16,6 @@ npm-debug.log*
 .vscode/*
 !.vscode/extensions.json
 .DS_Store
+
+# internal reference docs (large, not needed to build/ship the site)
+Assets/Brand/BrandBook_Gabrielle-Favere-Psicologia_V1-compressed.pdf
