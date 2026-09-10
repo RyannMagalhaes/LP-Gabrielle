@@ -361,7 +361,7 @@ Psicóloga • CRP XX/XXXXX
 
 **[FIM — TEXTO DE EXEMPLO]**
 
-CRP permanece placeholder até informação real. A foto pode usar reveal suave por máscara/clip-path, sem distorção.
+CRP CRP 04/87688
 
 ---
 

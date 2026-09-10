@@ -74,6 +74,32 @@ button {
   }
 }
 
+/* ---------- Browser surfaces: theme the parts we didn't hand-draw ---------- */
+::selection {
+  background: var(--color-blush);
+  color: var(--color-ink);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-rose-deep) var(--color-canvas);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-canvas);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-rose-deep);
+  border-radius: 999px;
+  border: 2px solid var(--color-canvas);
+}
+
 /* ---------- Accessible focus ---------- */
 :focus-visible {
   outline: 2px solid var(--color-rose-deep);
@@ -166,6 +192,19 @@ html.js-reveal-ready [data-reveal].is-revealed {
   animation-delay: calc(var(--stagger-index, 0) * 90ms);
 }
 
+/* ---------- Identification squiggle: draws in, not a fade (spec asks for
+   non-template feel - this is the one authored moment beyond the shared
+   [data-reveal] fade, so it doesn't just repeat every other section) ---------- */
+html.js-reveal-ready .identification-line path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset var(--dur-decorative) var(--ease-soft);
+}
+
+html.js-reveal-ready .identification-line.is-revealed path {
+  stroke-dashoffset: 0;
+}
+
 /* ---------- Reduced motion: hard safety net ---------- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -178,5 +217,9 @@ html.js-reveal-ready [data-reveal].is-revealed {
   html.js-reveal-ready [data-reveal] {
     opacity: 1;
     transform: none;
+  }
+
+  html.js-reveal-ready .identification-line path {
+    stroke-dashoffset: 0;
   }
 }

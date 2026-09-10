@@ -1,7 +1,6 @@
 ---
 import { Image } from 'astro:assets';
 import Container from '@/components/ui/Container.astro';
-import Eyebrow from '@/components/ui/Eyebrow.astro';
 import SectionHeading from '@/components/ui/SectionHeading.astro';
 import WhatsAppButton from '@/components/ui/WhatsAppButton.astro';
 import OrganicShape from '@/components/ui/OrganicShape.astro';
@@ -11,31 +10,26 @@ import heroPhoto from '@/assets/photos/hero-portrait.jpg';
 <section id="hero" class="relative overflow-hidden pb-24 pt-[140px] md:pb-32 md:pt-[168px]">
   <Container class="grid items-center gap-12 md:grid-cols-12 md:gap-6">
     <div class="order-2 md:order-1 md:col-span-7">
-      <p data-hero-item style="--stagger-index: 0;">
-        <Eyebrow>Psicoterapia online para mulheres</Eyebrow>
-      </p>
-
       <SectionHeading
         as="h1"
         size="hero"
         data-hero-item
-        style="--stagger-index: 1;"
-        class="mt-5 max-w-[16ch]"
+        style="--stagger-index: 0;"
+        class="max-w-[16ch]"
       >
-        Um espaço para você se compreender com mais gentileza.
+        Psicoterapia online para mulheres com ansiedade
       </SectionHeading>
 
       <p
         data-hero-item
-        style="--stagger-index: 2;"
+        style="--stagger-index: 1;"
         class="mt-6 max-w-[52ch] font-body text-body-lg text-muted"
       >
-        Um acompanhamento psicológico pautado em acolhimento, escuta e evidências
-        científicas para ajudar você a compreender seus pensamentos, emoções e a
-        forma como se relaciona consigo mesma.
+        Para você que aprendeu a dar conta de tudo, mas sente que a sua mente nunca desacelera.
+        Um espaço de acolhimento e escuta, com base na Terapia Cognitivo-Comportamental e em evidências científicas, para ajudar você a compreender a ansiedade, lidar com pensamentos que te sobrecarregam e viver com mais leveza.
       </p>
 
-      <div data-hero-item style="--stagger-index: 3;" class="mt-9 flex flex-col items-start gap-3">
+      <div data-hero-item style="--stagger-index: 2;" class="mt-9 flex flex-col items-start gap-3">
         <WhatsAppButton context="hero" />
         <span class="font-body text-small italic text-muted">
           Atendimento psicológico individual • Online
@@ -46,7 +40,7 @@ import heroPhoto from '@/assets/photos/hero-portrait.jpg';
     <div class="relative order-1 md:order-2 md:col-span-5">
       <div
         data-hero-photo
-        style="--stagger-index: 2;"
+        style="--stagger-index: 1;"
         class="relative -mx-5 md:mx-0 md:ml-auto md:w-[92%] md:translate-y-0"
       >
         <Image

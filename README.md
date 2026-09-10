@@ -14,11 +14,9 @@ npm run prepare-assets  # regenera favicons/OG/derivados de marca (ver abaixo)
 
 ## Pendências antes de publicar (não inventar — ver spec)
 
-- **Fotografias reais** de Gabrielle: hero (`src/assets/photos/hero-portrait.jpg`), sobre
-  (`about-portrait.jpg`), respiro emocional (`emotional-break.jpg`), CTA final
-  (`final-cta.jpg`). Até lá, `MediaPlaceholder` reserva o aspect-ratio exato e mostra um
-  aviso visual discreto — basta importar a imagem real e trocar pelo componente
-  `<Image>`/`<Picture>` no lugar do placeholder.
+- **Fotografias reais** de Gabrielle: já importadas via `astro:assets` em todas as seções
+  (hero, sobre, respiro emocional, CTA final, TCC, processo). `MediaPlaceholder` só é
+  usado hoje pelo poster do vídeo e pelas miniaturas do Instagram, que seguem pendentes.
 - **Vídeo de apresentação** (45–90s): definir `VIDEO_SRC` em
   `src/components/sections/IntroVideoSection.astro` e adicionar o poster em
   `src/assets/video/poster.jpg`.
@@ -26,7 +24,9 @@ npm run prepare-assets  # regenera favicons/OG/derivados de marca (ver abaixo)
 - **CRP, formação, duração/frequência de sessão, pagamento, disponibilidade,
   depoimentos**: nunca inventados — placeholders explícitos em `AboutSection.astro`,
   `Footer.astro` e `src/data/faq.ts`, aguardando dado real.
-- **Instagram**: link placeholder em `Footer.astro` (TODO marcado no código).
+- **Instagram**: link placeholder em `Footer.astro` (TODO marcado no código); miniaturas
+  reais dos posts em `src/data/instagram-posts.ts` ainda não substituíram
+  `MediaPlaceholder`.
 - **Domínio real**: `astro.config.mjs` (`site`) usa um domínio placeholder — trocar antes
   de habilitar sitemap/canonical definitivos.
 
