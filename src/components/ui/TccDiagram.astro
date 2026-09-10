@@ -1,0 +1,141 @@
+---
+// Light, didactic representation of the CBT cognitive triad
+// (Pensamentos → Emoções → Comportamentos → Pensamentos): three nodes on a
+// soft orbit guide, each with a real, legible icon (Lucide), joined by a
+// clockwise cycle of curved arrows. Deliberately avoids mental-health clichés
+// (no heart) - icons are chosen for precise topical meaning instead.
+import { Brain, WavesHorizontal, Footprints } from '@lucide/astro';
+---
+
+<div data-reveal class="tcc-diagram mx-auto aspect-square w-full max-w-[460px]">
+  <svg
+    viewBox="0 0 400 410"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+    class="h-full w-full overflow-visible"
+  >
+    <defs>
+      <marker
+        id="tcc-arrowhead"
+        viewBox="0 0 10 10"
+        refX="8"
+        refY="5"
+        markerWidth="6"
+        markerHeight="6"
+        orient="auto-start-reverse"
+      >
+        <path d="M0,0 L10,5 L0,10 Z" class="fill-rose-deep" />
+      </marker>
+
+      <filter id="tcc-shadow" x="-60%" y="-60%" width="220%" height="220%">
+        <feDropShadow dx="0" dy="6" stdDeviation="7" flood-color="var(--color-ink)" flood-opacity="0.14" />
+      </filter>
+
+      <linearGradient id="tcc-grad-thoughts" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="var(--color-blush)" />
+        <stop offset="100%" stop-color="var(--color-rose)" />
+      </linearGradient>
+      <linearGradient id="tcc-grad-emotions" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="var(--color-rose)" />
+        <stop offset="100%" stop-color="var(--color-rose-deep)" />
+      </linearGradient>
+      <linearGradient id="tcc-grad-behaviors" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="var(--color-surface-soft)" />
+        <stop offset="100%" stop-color="var(--color-blush)" />
+      </linearGradient>
+    </defs>
+
+    <!-- soft orbit guide, purely decorative, sits behind everything -->
+    <circle cx="200" cy="220" r="124" fill="none" stroke="var(--color-rose-deep)" stroke-opacity="0.14" stroke-width="1" stroke-dasharray="2 7" />
+
+    <!-- Cycle: Pensamentos -> Emoções -> Comportamentos -> Pensamentos -->
+    <path class="tcc-arrow tcc-arrow-1" d="M236.9,160.2 Q276,176 270.1,217.8" stroke="var(--color-rose-deep)" stroke-width="1.75" stroke-linecap="round" marker-end="url(#tcc-arrowhead)" pathLength="1" />
+    <path class="tcc-arrow tcc-arrow-2" d="M233,282 Q200,308 167,282" stroke="var(--color-rose-deep)" stroke-width="1.75" stroke-linecap="round" marker-end="url(#tcc-arrowhead)" pathLength="1" />
+    <path class="tcc-arrow tcc-arrow-3" d="M129.9,217.8 Q124,176 163.1,160.2" stroke="var(--color-rose-deep)" stroke-width="1.75" stroke-linecap="round" marker-end="url(#tcc-arrowhead)" pathLength="1" />
+
+    <!-- Pensamentos -->
+    <g class="tcc-node tcc-node-1">
+      <g class="tcc-node-inner">
+        <circle cx="200" cy="96" r="66" fill="url(#tcc-grad-thoughts)" filter="url(#tcc-shadow)" />
+        <Brain x={182} y={78} width={36} height={36} color="var(--color-ink)" stroke-width={1.6} aria-hidden="true" />
+      </g>
+      <text x="200" y="184" text-anchor="middle" class="fill-ink font-display text-[16px] font-medium">Pensamentos</text>
+      <text x="200" y="201" text-anchor="middle" class="fill-muted font-body text-[11px] italic">o que pensei</text>
+    </g>
+
+    <!-- Emoções -->
+    <g class="tcc-node tcc-node-2">
+      <g class="tcc-node-inner">
+        <circle cx="307" cy="282" r="66" fill="url(#tcc-grad-emotions)" filter="url(#tcc-shadow)" />
+        <WavesHorizontal x={289} y={264} width={36} height={36} color="var(--color-ink)" stroke-width={1.6} aria-hidden="true" />
+      </g>
+      <text x="307" y="368" text-anchor="middle" class="fill-ink font-display text-[16px] font-medium">Emoções</text>
+      <text x="307" y="385" text-anchor="middle" class="fill-muted font-body text-[11px] italic">o que senti</text>
+    </g>
+
+    <!-- Comportamentos -->
+    <g class="tcc-node tcc-node-3">
+      <g class="tcc-node-inner">
+        <circle cx="93" cy="282" r="66" fill="url(#tcc-grad-behaviors)" filter="url(#tcc-shadow)" />
+        <Footprints x={75} y={264} width={36} height={36} color="var(--color-ink)" stroke-width={1.6} aria-hidden="true" />
+      </g>
+      <text x="93" y="368" text-anchor="middle" class="fill-ink font-display text-[16px] font-medium">Comportamentos</text>
+      <text x="93" y="385" text-anchor="middle" class="fill-muted font-body text-[11px] italic">o que fiz</text>
+    </g>
+  </svg>
+</div>
+
+<style>
+  .tcc-node {
+    opacity: 0;
+    transition: opacity var(--dur-hero) var(--ease-standard);
+  }
+  .tcc-node-1 {
+    transition-delay: 0ms;
+  }
+  .tcc-node-2 {
+    transition-delay: 110ms;
+  }
+  .tcc-node-3 {
+    transition-delay: 220ms;
+  }
+  .tcc-diagram.is-revealed .tcc-node {
+    opacity: 1;
+  }
+
+  .tcc-node-inner {
+    transform-box: fill-box;
+    transform-origin: 50% 50%;
+    transition: transform var(--dur-hover) var(--ease-standard);
+  }
+  @media (hover: hover) {
+    .tcc-node-inner:hover {
+      transform: scale(1.045);
+    }
+  }
+
+  .tcc-arrow {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    transition: stroke-dashoffset var(--dur-hero) var(--ease-soft);
+  }
+  .tcc-diagram.is-revealed .tcc-arrow-1 {
+    stroke-dashoffset: 0;
+    transition-delay: 480ms;
+  }
+  .tcc-diagram.is-revealed .tcc-arrow-2 {
+    stroke-dashoffset: 0;
+    transition-delay: 620ms;
+  }
+  .tcc-diagram.is-revealed .tcc-arrow-3 {
+    stroke-dashoffset: 0;
+    transition-delay: 760ms;
+  }
+
+  :global(html:not(.js-reveal-ready)) .tcc-node,
+  :global(html:not(.js-reveal-ready)) .tcc-arrow {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+</style>

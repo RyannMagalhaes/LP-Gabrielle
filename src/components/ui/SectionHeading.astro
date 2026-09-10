@@ -1,0 +1,19 @@
+---
+interface Props {
+  as?: 'h1' | 'h2' | 'h3';
+  size?: 'hero' | 'h2' | 'h3';
+  class?: string;
+  [key: `data-${string}`]: unknown;
+}
+const { as: Tag = 'h2', size = 'h2', class: className = '', ...rest } = Astro.props;
+
+const sizeClass = {
+  hero: 'text-hero leading-[1.02] tracking-tight',
+  h2: 'text-h2 leading-[1.05] tracking-tight',
+  h3: 'text-h3 leading-[1.08]',
+}[size as 'hero' | 'h2' | 'h3'];
+---
+
+<Tag class:list={['font-display font-medium text-ink', sizeClass, className]} {...rest}>
+  <slot />
+</Tag>

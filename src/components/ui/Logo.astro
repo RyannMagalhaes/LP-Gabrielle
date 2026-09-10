@@ -1,0 +1,42 @@
+---
+// Official brand lockup - PNG used as-is (see project README for why the raw
+// Logo_RGB.svg is not embedded directly). Geometry/colors are never modified;
+// this component only changes rendered size and which official color variant
+// is shown, never recolors pixels.
+import { Image } from 'astro:assets';
+import verticalLogo from '@/assets/brand/logo/Verde_VerticalPNG_RGB.png';
+// Mobile/compact mark uses the derived ink recolor (not the raw terracotta
+// original) so it stays consistent with the site's own palette rather than
+// the separate raw brand-exploration colors - see project README.
+import symbolInk from '@/assets/brand-derived/symbol-ink.png';
+
+interface Props {
+  variant?: 'full' | 'symbol';
+  widthPx?: number;
+  class?: string;
+}
+
+const { variant = 'full', widthPx = 44, class: className = '' } = Astro.props;
+---
+
+{
+  variant === 'full' ? (
+    <Image
+      src={verticalLogo}
+      alt="Gabrielle Favere — Psicologia"
+      width={widthPx}
+      loading="eager"
+      decoding="async"
+      class:list={['h-auto w-auto', className]}
+    />
+  ) : (
+    <Image
+      src={symbolInk}
+      alt="Gabrielle Favere"
+      width={widthPx}
+      loading="eager"
+      decoding="async"
+      class:list={['h-auto w-auto', className]}
+    />
+  )
+}

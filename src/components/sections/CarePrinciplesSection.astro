@@ -1,0 +1,61 @@
+---
+import Container from '@/components/ui/Container.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import OrganicShape from '@/components/ui/OrganicShape.astro';
+import { CARE_PILLARS } from '@/data/care-pillars';
+
+const baselineShift = ['', 'md:mt-9', ''];
+const widthClass = ['md:max-w-[22ch]', 'md:max-w-[26ch]', 'md:max-w-[30ch]'];
+---
+
+<section id="psicoterapia" class="relative overflow-hidden bg-surface-soft py-20 md:py-32">
+  <div
+    data-parallax="18"
+    class="pointer-events-none absolute -right-24 -top-24 h-[420px] w-[420px] opacity-[0.08] md:h-[560px] md:w-[560px]"
+    aria-hidden="true"
+  >
+    <OrganicShape variant="rose-deep" widthPx={560} class="h-auto w-full rotate-[18deg]" />
+  </div>
+
+  <Container class="relative">
+    <SectionHeading data-reveal size="h2" class="max-w-[18ch]">
+      Um cuidado construído entre acolhimento, ciência e vínculo.
+    </SectionHeading>
+
+    <div class="relative mt-20 pt-8">
+      <svg
+        class="pointer-events-none absolute inset-x-0 top-0 hidden h-8 w-full md:block"
+        viewBox="0 0 1200 32"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <path
+          d="M0 16C200 16 260 26 460 22S760 8 900 14 1100 22 1200 18"
+          stroke="var(--color-rose-deep)"
+          stroke-opacity="0.3"
+          stroke-width="1.5"
+          fill="none"
+        />
+      </svg>
+
+      <div class="flex flex-col gap-10 md:flex-row md:items-start md:gap-10">
+        {
+          CARE_PILLARS.map((pillar, index) => (
+            <div
+              data-reveal
+              data-reveal-delay={index === 1 ? 160 : index * 90}
+              class:list={['flex-1', baselineShift[index]]}
+            >
+              <h3 class="font-display text-[clamp(1.9rem,2.8vw,2.75rem)] leading-[1.1] text-ink">
+                {pillar.title}
+              </h3>
+              <p class:list={['mt-3 font-body text-body-lg text-muted', widthClass[index]]}>
+                {pillar.description}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </Container>
+</section>

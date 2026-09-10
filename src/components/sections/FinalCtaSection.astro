@@ -1,0 +1,41 @@
+---
+import { Image } from 'astro:assets';
+import Container from '@/components/ui/Container.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import WhatsAppButton from '@/components/ui/WhatsAppButton.astro';
+import OrganicShape from '@/components/ui/OrganicShape.astro';
+import finalCtaPhoto from '@/assets/photos/final-cta.jpg';
+---
+
+<section class="bg-blush/60 py-20 md:py-32">
+  <Container class="grid items-center gap-12 md:grid-cols-12 md:gap-8">
+    <div data-reveal class="order-2 md:order-1 md:col-span-7">
+      <SectionHeading size="hero" class="max-w-[14ch] !text-[clamp(2.4rem,4.2vw,4.6rem)]">
+        Dar o primeiro passo também é uma forma de cuidado.
+      </SectionHeading>
+      <p class="mt-6 max-w-[46ch] font-body text-body-lg text-ink/80">
+        Se você sente que chegou o momento de olhar com mais atenção para o que está
+        vivendo, podemos começar com uma conversa.
+      </p>
+
+      <div class="mt-9 flex items-center gap-4">
+        <WhatsAppButton context="final-cta" />
+        <OrganicShape variant="ink" widthPx={44} class="h-auto w-11 opacity-80" />
+      </div>
+      <p class="mt-4 font-body text-small italic text-ink/70">
+        Você será direcionada para o WhatsApp.
+      </p>
+    </div>
+
+    <div data-reveal data-reveal-delay="120" class="order-1 md:order-2 md:col-span-5">
+      <Image
+        src={finalCtaPhoto}
+        alt="Gabrielle Favere, disponível para atendimento"
+        width={640}
+        loading="lazy"
+        decoding="async"
+        class="aspect-[4/5] w-full mask-organic-1 object-cover object-[50%_12%] md:object-[50%_20%]"
+      />
+    </div>
+  </Container>
+</section>

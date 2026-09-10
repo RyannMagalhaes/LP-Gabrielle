@@ -1,0 +1,56 @@
+---
+import Container from '@/components/ui/Container.astro';
+import Logo from '@/components/ui/Logo.astro';
+import { NAV_LINKS } from '@/data/nav-links';
+import { buildWhatsAppUrl } from '@/lib/whatsapp.config';
+import { buildInstagramProfileUrl } from '@/lib/instagram.config';
+
+const whatsappHref = buildWhatsAppUrl('header');
+const instagramHref = buildInstagramProfileUrl();
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-border bg-canvas py-16">
+  <Container>
+    <div class="grid gap-10 md:grid-cols-3">
+      <div>
+        <Logo variant="full" widthPx={34} />
+        <p class="mt-4 font-display text-h3 text-ink">Gabrielle Favere</p>
+        <p class="font-body text-body text-muted">Psicóloga • CRP XX/XXXXX</p>
+      </div>
+
+      <nav aria-label="Navegação do rodapé" class="flex flex-col gap-2">
+        {
+          NAV_LINKS.map((link) => (
+            <a href={link.href} class="font-body text-body text-muted transition-colors hover:text-rose-deep">
+              {link.label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <div class="flex flex-col gap-2">
+        <a
+          href={whatsappHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-body text-body text-muted transition-colors hover:text-rose-deep"
+        >
+          WhatsApp
+        </a>
+        <a
+          href={instagramHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-body text-body text-muted transition-colors hover:text-rose-deep"
+        >
+          Instagram
+        </a>
+      </div>
+    </div>
+
+    <p class="mt-12 font-body text-small text-muted">
+      &copy; {year} Gabrielle Favere. Todos os direitos reservados.
+    </p>
+  </Container>
+</footer>

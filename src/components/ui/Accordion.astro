@@ -1,0 +1,40 @@
+---
+import AccordionItem from './AccordionItem.astro';
+import type { FaqItem } from '@/data/faq';
+
+interface Props {
+  items: FaqItem[];
+}
+const { items } = Astro.props;
+---
+
+<div class="accordion">
+  {items.map((item, index) => <AccordionItem item={item} index={index} />)}
+</div>
+
+<script>
+  const accordion = document.querySelector('.accordion');
+  if (accordion) {
+    accordion.addEventListener('click', (event) => {
+      const trigger = (event.target as HTMLElement).closest<HTMLButtonElement>(
+        '.accordion-trigger'
+      );
+      if (!trigger) return;
+
+      const expanded = trigger.getAttribute('aria-expanded') === 'true';
+      trigger.setAttribute('aria-expanded', String(!expanded));
+
+      const panel = document.getElementById(trigger.getAttribute('aria-controls') ?? '');
+      panel?.classList.toggle('is-open', !expanded);
+    });
+  }
+</script>
+
+<style>
+  .accordion-panel.is-open {
+    grid-template-rows: 1fr;
+  }
+  :global(.accordion-trigger[aria-expanded='true']) .accordion-chevron {
+    transform: rotate(180deg);
+  }
+</style>

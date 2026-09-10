@@ -1,0 +1,45 @@
+---
+import { buildWhatsAppUrl } from '@/lib/whatsapp.config';
+import WhatsAppIcon from '@/components/ui/icons/WhatsAppIcon.astro';
+
+const href = buildWhatsAppUrl('floating-button');
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  id="floating-whatsapp"
+  aria-label="Conversar com Gabrielle pelo WhatsApp"
+  class="group fixed z-[var(--z-floating-whatsapp)] flex h-14 w-14 items-center justify-center rounded-full bg-rose-deep text-white opacity-0 shadow-md transition-all duration-[var(--dur-hover)] ease-[var(--ease-standard)]"
+  style="right: max(1.25rem, env(safe-area-inset-right)); bottom: max(1.25rem, env(safe-area-inset-bottom));"
+>
+  <WhatsAppIcon class="h-6 w-6" />
+  <span
+    class="pointer-events-none absolute right-full mr-3 hidden whitespace-nowrap rounded-full bg-ink px-3 py-1.5 font-body text-small text-white opacity-0 transition-opacity duration-[var(--dur-hover)] group-hover:opacity-100 md:block"
+  >
+    Conversar pelo WhatsApp
+  </span>
+</a>
+
+<script>
+  import { initScrollAppear } from '@/lib/motion';
+  initScrollAppear('#floating-whatsapp', { threshold: 280 });
+</script>
+
+<style>
+  #floating-whatsapp.is-visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+  #floating-whatsapp:not(.is-visible) {
+    transform: scale(0.9);
+    pointer-events: none;
+  }
+  #floating-whatsapp:hover {
+    transform: scale(1.04);
+  }
+  #floating-whatsapp.is-visible:hover {
+    transform: scale(1.04);
+  }
+</style>

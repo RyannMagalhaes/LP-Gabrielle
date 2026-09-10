@@ -1,0 +1,69 @@
+---
+import { Image } from 'astro:assets';
+import Container from '@/components/ui/Container.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import { PROCESS_STEPS } from '@/data/process-steps';
+import processPhoto from '@/assets/photos/process-remote.jpg';
+---
+
+<section id="como-funciona" class="overflow-hidden py-20 md:py-32">
+  <Container class="grid gap-14 md:grid-cols-12 md:items-end md:gap-10">
+    <div class="md:order-1 md:col-span-8">
+      <SectionHeading data-reveal size="h2" class="max-w-[16ch]">
+        Começar pode ser mais simples do que parece.
+      </SectionHeading>
+
+      <div class="relative mt-16">
+        <div class="absolute bottom-0 left-[13px] top-0 w-px bg-border" aria-hidden="true"></div>
+
+        <ol class="grid gap-10 md:grid-cols-2 md:gap-x-8 md:gap-y-10">
+          {
+            PROCESS_STEPS.map((step, index) => (
+              <li
+                data-reveal
+                data-reveal-delay={index * 90}
+                class="relative flex gap-4 md:gap-4"
+              >
+                <span
+                  class:list={[
+                    'relative z-10 flex h-[26px] w-[26px] flex-shrink-0 items-center justify-center rounded-full border-2 bg-canvas',
+                    step.emphasis ? 'border-rose-deep' : 'border-ink/30',
+                  ]}
+                  aria-hidden="true"
+                >
+                  <span class:list={['h-2 w-2 rounded-full', step.emphasis ? 'bg-rose-deep' : 'bg-ink/30']} />
+                </span>
+
+                <div>
+                  <p
+                    class:list={[
+                      'font-display text-h3',
+                      step.emphasis ? 'text-rose-deep' : 'text-ink',
+                    ]}
+                  >
+                    {step.number}
+                  </p>
+                  <p class="mt-1 font-display text-body font-medium text-ink">{step.title}</p>
+                  <p class="mt-2 max-w-[32ch] font-body text-body text-muted">{step.description}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </div>
+
+    <div class="md:order-2 md:col-span-4">
+      <div data-reveal data-reveal-delay="360" class="mx-auto max-w-[320px] md:ml-auto md:mr-0 md:max-w-none">
+        <Image
+          src={processPhoto}
+          alt="Gabrielle em atendimento a partir de seu espaço de trabalho"
+          width={640}
+          loading="lazy"
+          decoding="async"
+          class="aspect-[2/3] w-full mask-organic-2 object-cover object-[55%_18%]"
+        />
+      </div>
+    </div>
+  </Container>
+</section>

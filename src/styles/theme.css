@@ -1,0 +1,103 @@
+/*
+  Design tokens for the Gabrielle Favere landing page.
+  Source of truth: LANDING_PAGE_SPEC_Gabrielle_Favere.md (section 5-6).
+
+  Tailwind v4 is CSS-first: everything inside @theme that matches a
+  recognized namespace (--color-*, --font-*, --text-*, --ease-*, --radius-*)
+  auto-generates utility classes (bg-canvas, font-display, text-hero, ease-soft...).
+  Anything below that does NOT match a namespace (--space-*, --container-*,
+  --gutter-*, --z-*, --dur-*) is still a valid CSS custom property, just without
+  a generated utility class - consumed via var() in component <style> blocks
+  or Tailwind arbitrary values (e.g. z-[var(--z-header)]).
+*/
+
+/* FONT SUBSTITUTION NOTICE
+   The brand spec calls for Roc Grotesk (display) and Sitka (body). No licensed
+   webfont files exist in /Assets/Brand and licensing is unconfirmed, so per the
+   spec's own instruction they are NOT downloaded from an unauthorized source.
+   Bricolage Grotesque (display) and Newsreader (body) are documented, license-clean
+   stand-ins (SIL OFL, self-hosted via Fontsource) chosen for similar editorial /
+   warm / non-corporate character. When real licensed Roc Grotesk/Sitka files are
+   supplied, swap the Fontsource imports in BaseLayout.astro and the two variables
+   below - nothing else in the codebase should need to change. */
+
+@theme {
+  /* ---------- TAILWIND-MAPPED TOKENS ---------- */
+
+  /* Colors - spec section 5. Distribution target: 60-70% canvas/white,
+     20-30% blush/surface-soft, 5-10% rose-deep + ink. */
+  --color-canvas: #FCF9F7;
+  --color-surface-soft: #F7EDEF;
+  --color-blush: #E8BFC8;
+  --color-rose: #C98291;
+  --color-rose-deep: #A65F70;
+  --color-ink: #34302F;
+  --color-muted: #716766;
+  --color-border: #E8DDDC;
+  --color-white: #FFFFFF;
+
+  /* Typography */
+  --font-display: "Bricolage Grotesque", "Arial Narrow", Arial, sans-serif;
+  --font-body: "Newsreader", Georgia, "Times New Roman", serif;
+
+  /* Fluid type scale - spec section 6 */
+  --text-hero: clamp(3rem, 6vw, 6.2rem);
+  --text-h2: clamp(2.2rem, 4vw, 4.4rem);
+  --text-h3: clamp(1.35rem, 2vw, 2rem);
+  --text-body-lg: clamp(1.1rem, 1.3vw, 1.3rem);
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+
+  /* Motion easing - spec section 21 */
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Radius - deliberately semantic, never applied uniformly everywhere */
+  --radius-button: 999px;
+  --radius-block-sm: 18px;
+  --radius-block-lg: 28px;
+  --radius-image-sm: 24px;
+  --radius-image-lg: 40px;
+
+  /* ---------- PROJECT-ONLY VARIABLES (no auto-generated Tailwind utility) ---------- */
+
+  /* Spacing scale - spec section 6. NOTE: these values already match Tailwind's
+     default 4px spacing scale 1:1, just under different index numbers:
+       space-1  4px  = p-1     space-6  32px = p-8
+       space-2  8px  = p-2     space-7  48px = p-12
+       space-3 12px  = p-3     space-8  64px = p-16
+       space-4 16px  = p-4     space-9  96px = p-24
+       space-5 24px  = p-6     space-10 128px = p-32
+     Prefer the default Tailwind spacing utilities (p-6, gap-12, py-24...) for
+     layout; use these variables only for raw CSS/inline styles (e.g. JS-driven
+     reveal translateY amounts) where a var() is more convenient than a utility. */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+
+  /* Containers/gutters - consumed by .container / .container--wide in base.css */
+  --container-max: 1200px;
+  --container-wide: 1360px;
+  --gutter-mobile: 20px;
+  --gutter-tablet: 32px;
+  --gutter-desktop: 48px;
+
+  /* Stacking order - single source of truth, never hardcode a z-index inline */
+  --z-header: 50;
+  --z-floating-whatsapp: 60;
+  --z-mobile-menu: 70;
+
+  /* Motion durations - spec section 21 */
+  --dur-hover: 220ms;
+  --dur-micro: 280ms;
+  --dur-reveal: 650ms;
+  --dur-hero: 900ms;
+  --dur-decorative: 1100ms;
+}

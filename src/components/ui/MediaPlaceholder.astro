@@ -1,0 +1,71 @@
+---
+// Elegant stand-in for photography/video not yet supplied. Reserves the exact
+// aspect ratio the final media will use (zero layout shift on swap) and is
+// clearly marked in code for whoever replaces it later.
+import OrganicShape from './OrganicShape.astro';
+
+interface Props {
+  label: string;
+  aspectRatio: string; // e.g. "4/5", "16/9"
+  targetPath: string; // e.g. "src/assets/photos/hero-portrait.jpg"
+  variant?: 'photo' | 'video';
+  radiusClass?: string;
+  watermarkOpacity?: number;
+  watermarkPosition?: 'center' | 'top' | 'bottom-right' | 'top-right';
+  class?: string;
+}
+
+const {
+  label,
+  aspectRatio,
+  targetPath,
+  variant = 'photo',
+  radiusClass = '',
+  watermarkOpacity = 0.1,
+  watermarkPosition = 'center',
+  class: className = '',
+} = Astro.props;
+
+const watermarkPositionClass = {
+  center: 'inset-0 m-auto',
+  top: 'inset-x-0 top-[8%] mx-auto',
+  'bottom-right': 'bottom-[6%] right-[6%]',
+  'top-right': 'top-[6%] right-[6%]',
+}[watermarkPosition];
+---
+
+<!-- PLACEHOLDER: see data-target-path below for the file this should be replaced with. -->
+<div
+  data-placeholder="true"
+  data-target-path={targetPath}
+  aria-hidden="true"
+  class:list={[
+    'relative overflow-hidden bg-gradient-to-br from-canvas via-canvas to-blush/40',
+    radiusClass,
+    className,
+  ]}
+  style={{ aspectRatio }}
+>
+  <div
+    class:list={['absolute w-[42%] max-w-[220px]', watermarkPositionClass]}
+    style={{ opacity: watermarkOpacity }}
+  >
+    <OrganicShape variant="ink" widthPx={220} class="h-auto w-full" />
+  </div>
+
+  {
+    variant === 'video' && (
+      <span class="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-ink/25 text-ink/50">
+        <svg viewBox="0 0 24 24" class="ml-1 h-6 w-6" fill="currentColor" aria-hidden="true">
+          <path d="M8 5.5v13l11-6.5-11-6.5Z" />
+        </svg>
+      </span>
+    )
+  }
+
+  <span
+    class="absolute bottom-3 left-3 rounded-full bg-canvas/70 px-3 py-1 font-body text-[11px] italic text-muted backdrop-blur-sm"
+  >
+    {label}
+  </span>
+</div>

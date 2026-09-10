@@ -1,0 +1,135 @@
+---
+import Container from '@/components/ui/Container.astro';
+import Logo from '@/components/ui/Logo.astro';
+import WhatsAppButton from '@/components/ui/WhatsAppButton.astro';
+import MenuIcon from '@/components/ui/icons/MenuIcon.astro';
+import { NAV_LINKS } from '@/data/nav-links';
+---
+
+<header id="site-header" class="fixed inset-x-0 top-0 z-[var(--z-header)] border-b border-transparent transition-colors duration-300">
+  <Container class="flex h-[84px] items-center justify-between md:h-[96px]">
+    <a href="#hero" class="flex items-center gap-2" aria-label="Gabrielle Favere — Início">
+      <Logo variant="full" widthPx={38} class="hidden md:block" />
+      <Logo variant="symbol" widthPx={34} class="md:hidden" />
+    </a>
+
+    <nav class="hidden items-center gap-8 md:flex" aria-label="Navegação principal">
+      {
+        NAV_LINKS.map((link) => (
+          <a
+            href={link.href}
+            class="font-display text-small font-medium uppercase tracking-[0.08em] text-ink/80 transition-colors duration-[var(--dur-hover)] hover:text-rose-deep"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="hidden md:block">
+      <WhatsAppButton context="header" variant="outline" class="text-small" />
+    </div>
+
+    <button
+      type="button"
+      id="menu-toggle"
+      class="flex h-11 w-11 items-center justify-center rounded-full text-ink md:hidden"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      aria-label="Abrir menu"
+    >
+      <MenuIcon class="h-6 w-6" />
+    </button>
+  </Container>
+</header>
+
+<div
+  id="mobile-menu"
+  class="fixed inset-0 z-[var(--z-mobile-menu)] hidden translate-y-[-8px] flex-col bg-canvas opacity-0 transition-all duration-300 ease-[var(--ease-standard)] md:hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Menu de navegação"
+>
+  <Container class="flex h-[84px] items-center justify-between">
+    <Logo variant="symbol" widthPx={34} />
+    <button
+      type="button"
+      id="menu-close"
+      class="flex h-11 w-11 items-center justify-center rounded-full text-ink"
+      aria-label="Fechar menu"
+    >
+      <span class="text-2xl leading-none">&times;</span>
+    </button>
+  </Container>
+
+  <nav class="flex flex-1 flex-col justify-center gap-2 px-6" aria-label="Navegação principal (mobile)">
+    {
+      NAV_LINKS.map((link) => (
+        <a
+          href={link.href}
+          class="mobile-nav-link border-b border-border py-4 font-body text-h3 text-ink"
+        >
+          {link.label}
+        </a>
+      ))
+    }
+  </nav>
+
+  <Container class="pb-10 pt-4">
+    <WhatsAppButton context="header" class="w-full" />
+  </Container>
+</div>
+
+<script>
+  import { createFocusTrap } from '@/lib/focus-trap';
+
+  const header = document.getElementById('site-header');
+  const onScroll = () => {
+    if (!header) return;
+    header.classList.toggle('is-scrolled', window.scrollY > 40);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  const toggle = document.getElementById('menu-toggle') as HTMLButtonElement | null;
+  const closeBtn = document.getElementById('menu-close') as HTMLButtonElement | null;
+  const menu = document.getElementById('mobile-menu');
+
+  if (toggle && menu && closeBtn) {
+    const trap = createFocusTrap(menu, closeMenu);
+
+    function openMenu() {
+      if (!menu || !toggle) return;
+      menu.classList.remove('hidden');
+      requestAnimationFrame(() => {
+        menu.classList.remove('opacity-0', 'translate-y-[-8px]');
+      });
+      toggle.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+      trap.activate(menu);
+    }
+
+    function closeMenu() {
+      if (!menu || !toggle) return;
+      menu.classList.add('opacity-0', 'translate-y-[-8px]');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      trap.deactivate();
+      setTimeout(() => menu?.classList.add('hidden'), 300);
+    }
+
+    toggle.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    menu.querySelectorAll('.mobile-nav-link').forEach((link) => {
+      link.addEventListener('click', closeMenu);
+    });
+  }
+</script>
+
+<style>
+  #site-header.is-scrolled {
+    background-color: color-mix(in srgb, var(--color-canvas) 92%, transparent);
+    border-bottom-color: var(--color-border);
+    backdrop-filter: blur(6px);
+  }
+</style>

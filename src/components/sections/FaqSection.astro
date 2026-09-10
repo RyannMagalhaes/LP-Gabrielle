@@ -1,0 +1,18 @@
+---
+import Container from '@/components/ui/Container.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import Accordion from '@/components/ui/Accordion.astro';
+import { FAQ_ITEMS } from '@/data/faq';
+---
+
+<section id="duvidas" class="py-20 md:py-32">
+  <Container class="md:grid md:grid-cols-12 md:gap-8">
+    <SectionHeading data-reveal size="h2" class="max-w-[16ch] md:col-span-4">
+      Talvez você ainda tenha algumas dúvidas.
+    </SectionHeading>
+
+    <div data-reveal data-reveal-delay="100" class="mt-10 md:col-span-8 md:mt-0">
+      <Accordion items={FAQ_ITEMS} />
+    </div>
+  </Container>
+</section>

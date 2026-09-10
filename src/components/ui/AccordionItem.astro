@@ -1,0 +1,37 @@
+---
+import ChevronIcon from './icons/ChevronIcon.astro';
+import type { FaqItem } from '@/data/faq';
+
+interface Props {
+  item: FaqItem;
+  index: number;
+}
+const { item, index } = Astro.props;
+const triggerId = `faq-trigger-${index}`;
+const panelId = `faq-panel-${index}`;
+---
+
+<div class="border-b border-border">
+  <h3 class="m-0">
+    <button
+      type="button"
+      id={triggerId}
+      class="accordion-trigger flex w-full items-center justify-between gap-6 py-6 text-left font-display text-h3 text-ink transition-colors duration-[var(--dur-hover)]"
+      aria-expanded="false"
+      aria-controls={panelId}
+    >
+      <span>{item.question}</span>
+      <ChevronIcon class="accordion-chevron h-5 w-5 flex-shrink-0 text-rose-deep transition-transform duration-[var(--dur-micro)] ease-[var(--ease-standard)]" />
+    </button>
+  </h3>
+  <div
+    id={panelId}
+    role="region"
+    aria-labelledby={triggerId}
+    class="accordion-panel grid grid-rows-[0fr] transition-[grid-template-rows] duration-[var(--dur-micro)] ease-[var(--ease-standard)]"
+  >
+    <div class="overflow-hidden">
+      <p class="max-w-[60ch] pb-6 font-body text-body text-muted">{item.answer}</p>
+    </div>
+  </div>
+</div>

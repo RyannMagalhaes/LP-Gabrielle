@@ -1,0 +1,42 @@
+---
+import { Image } from 'astro:assets';
+import Container from '@/components/ui/Container.astro';
+import OrganicShape from '@/components/ui/OrganicShape.astro';
+import emotionalBreakPhoto from '@/assets/photos/emotional-break.jpg';
+---
+
+<section id="respiro" class="py-24 md:py-36">
+  <Container class="flex flex-col items-center text-center">
+    <div data-reveal class="relative w-full max-w-[360px] md:max-w-[420px]">
+      <div data-parallax="16">
+        <Image
+          src={emotionalBreakPhoto}
+          alt="Gabrielle Favere em um momento de leitura e pausa"
+          width={640}
+          loading="lazy"
+          decoding="async"
+          class="aspect-[2/3] w-full mask-organic-2 object-cover object-[50%_45%]"
+        />
+      </div>
+
+      <div
+        class="pointer-events-none absolute -bottom-5 -right-4 h-20 w-20 overflow-hidden rounded-block-sm md:-bottom-7 md:-right-6 md:h-24 md:w-24"
+        aria-hidden="true"
+      >
+        <OrganicShape
+          variant="rose-deep"
+          widthPx={200}
+          class="h-auto w-[200px] max-w-none translate-x-4 translate-y-4 rotate-[8deg]"
+        />
+      </div>
+    </div>
+
+    <p
+      data-reveal
+      data-reveal-delay="120"
+      class="mt-10 max-w-[28ch] font-body text-body-lg italic text-ink md:mt-14 md:max-w-[36ch]"
+    >
+      Você não precisa ter todas as respostas para começar.
+    </p>
+  </Container>
+</section>

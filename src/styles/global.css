@@ -1,0 +1,9 @@
+@import "tailwindcss";
+@import "./theme.css";
+
+/* Layered as "base" so Tailwind utilities (which Tailwind v4 places in the
+   "utilities" layer) always win over these resets, regardless of selector
+   specificity or source order - unlayered CSS would otherwise beat ALL
+   layered utilities per the CSS Cascade Layers spec, breaking classes like
+   `hidden` on elements this file also styles (e.g. `img { display: block }`). */
+@import "./base.css" layer(base);

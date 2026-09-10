@@ -1,0 +1,31 @@
+---
+// Reusable wrapper around the brand symbol (derived recolors).
+// The mark is always used as a single cohesive unit - never isolate the small
+// heart-shaped accent alone, which would read as a mental-health visual cliché
+// the spec explicitly asks to avoid. Crop/fragment via the wrapping container's
+// overflow instead of by picking out part of the artwork itself.
+import { Image } from 'astro:assets';
+import symbolInk from '@/assets/brand-derived/symbol-ink.png';
+import symbolRoseDeep from '@/assets/brand-derived/symbol-rose-deep.png';
+
+interface Props {
+  variant?: 'ink' | 'rose-deep';
+  class?: string;
+  widthPx?: number;
+  loading?: 'eager' | 'lazy';
+}
+
+const { variant = 'ink', class: className = '', widthPx = 320, loading = 'lazy' } = Astro.props;
+const src = variant === 'rose-deep' ? symbolRoseDeep : symbolInk;
+---
+
+<Image
+  src={src}
+  alt=""
+  aria-hidden="true"
+  role="presentation"
+  width={widthPx}
+  loading={loading}
+  decoding="async"
+  class:list={['select-none', className]}
+/>

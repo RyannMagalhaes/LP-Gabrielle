@@ -1,0 +1,48 @@
+---
+import '@fontsource/bricolage-grotesque/500.css';
+import '@fontsource/bricolage-grotesque/600.css';
+import '@fontsource/newsreader/400.css';
+import '@fontsource/newsreader/400-italic.css';
+import '@fontsource/newsreader/500.css';
+import '@/styles/global.css';
+import SeoHead from '@/components/layout/SeoHead.astro';
+import FloatingWhatsAppButton from '@/components/FloatingWhatsAppButton.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <SeoHead title={title} description={description} />
+    <script is:inline>
+      // Runs before first paint: only enable the reveal-hidden CSS state when
+      // the user hasn't asked for reduced motion, so content is never briefly
+      // visible-then-hidden and never depends on this script actually running.
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('js-reveal-ready');
+      }
+    </script>
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Pular para o conteúdo</a>
+    <slot name="header" />
+    <main id="main">
+      <slot />
+    </main>
+    <slot name="footer" />
+    <FloatingWhatsAppButton />
+
+    <script>
+      import { initScrollReveal, initParallax } from '@/lib/motion';
+      initScrollReveal();
+      initParallax();
+    </script>
+  </body>
+</html>

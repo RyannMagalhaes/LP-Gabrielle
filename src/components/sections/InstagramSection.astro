@@ -1,0 +1,122 @@
+---
+import Container from '@/components/ui/Container.astro';
+import Eyebrow from '@/components/ui/Eyebrow.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import InstagramPostCard from '@/components/ui/InstagramPostCard.astro';
+import ChevronIcon from '@/components/ui/icons/ChevronIcon.astro';
+import InstagramIcon from '@/components/ui/icons/InstagramIcon.astro';
+import { buildInstagramProfileUrl, INSTAGRAM_HANDLE } from '@/lib/instagram.config';
+import { INSTAGRAM_POSTS } from '@/data/instagram-posts';
+
+const profileUrl = buildInstagramProfileUrl();
+---
+
+<section class="overflow-hidden py-20 md:py-32">
+  <Container>
+    <div data-reveal class="max-w-[46ch]">
+      <Eyebrow>No Instagram</Eyebrow>
+      <SectionHeading size="h2" class="mt-5 max-w-[16ch]">
+        Um espaço para reflexões do dia a dia.
+      </SectionHeading>
+      <p class="mt-5 font-body text-body-lg text-muted">
+        Além do consultório, também compartilho conteúdos sobre saúde emocional,
+        autoconhecimento e bem-estar no Instagram.
+      </p>
+    </div>
+  </Container>
+
+  <div data-reveal data-reveal-delay="120" class="relative mt-12 md:mt-16">
+    <Container class="relative">
+      <ul
+        id="instagram-track"
+        tabindex="0"
+        aria-label="Publicações recentes no Instagram de Gabrielle Favere"
+        class="instagram-track flex gap-4 overflow-x-auto pb-2 md:gap-6"
+      >
+        {
+          INSTAGRAM_POSTS.map((post, index) => (
+            <InstagramPostCard post={post} index={index} total={INSTAGRAM_POSTS.length} />
+          ))
+        }
+      </ul>
+
+      <div class="mt-6 flex items-center justify-end gap-3">
+        <button
+          type="button"
+          id="instagram-prev"
+          aria-label="Ver publicações anteriores"
+          class="flex h-11 w-11 items-center justify-center rounded-full border border-ink/20 text-ink transition-colors duration-[var(--dur-hover)] hover:border-rose-deep hover:text-rose-deep disabled:opacity-30 disabled:hover:border-ink/20 disabled:hover:text-ink"
+        >
+          <ChevronIcon class="h-4 w-4 rotate-90" />
+        </button>
+        <button
+          type="button"
+          id="instagram-next"
+          aria-label="Ver mais publicações"
+          class="flex h-11 w-11 items-center justify-center rounded-full border border-ink/20 text-ink transition-colors duration-[var(--dur-hover)] hover:border-rose-deep hover:text-rose-deep disabled:opacity-30 disabled:hover:border-ink/20 disabled:hover:text-ink"
+        >
+          <ChevronIcon class="h-4 w-4 -rotate-90" />
+        </button>
+      </div>
+    </Container>
+  </div>
+
+  <Container class="mt-10 flex justify-center md:mt-12">
+    <a
+      href={profileUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center justify-center gap-2 rounded-button border border-ink/20 px-7 py-3.5 font-display text-body font-medium text-ink transition-colors duration-[var(--dur-hover)] ease-[var(--ease-standard)] hover:border-rose-deep hover:text-rose-deep"
+    >
+      <InstagramIcon class="h-5 w-5" />
+      Seguir @{INSTAGRAM_HANDLE} no Instagram
+    </a>
+  </Container>
+</section>
+
+<script>
+  const track = document.getElementById('instagram-track');
+  const prevBtn = document.getElementById('instagram-prev') as HTMLButtonElement | null;
+  const nextBtn = document.getElementById('instagram-next') as HTMLButtonElement | null;
+
+  if (track && prevBtn && nextBtn) {
+    const prefersReducedMotion = () =>
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function step(): number {
+      const firstCard = track?.querySelector('li');
+      if (!firstCard) return 300;
+      const gap = parseFloat(getComputedStyle(track!).columnGap || '16');
+      return firstCard.getBoundingClientRect().width + gap;
+    }
+
+    function updateButtons() {
+      if (!track) return;
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      prevBtn!.disabled = track.scrollLeft <= 1;
+      nextBtn!.disabled = track.scrollLeft >= maxScroll - 1;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      track.scrollBy({ left: -step(), behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      track.scrollBy({ left: step(), behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
+    });
+
+    track.addEventListener('scroll', updateButtons, { passive: true });
+    updateButtons();
+  }
+</script>
+
+<style>
+  .instagram-track {
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+
+  .instagram-track::-webkit-scrollbar {
+    display: none;
+  }
+</style>
