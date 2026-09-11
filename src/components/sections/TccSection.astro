@@ -22,7 +22,7 @@ import tccPhoto from '@/assets/photos/tcc-context.jpg';
   </Container>
 
   <Container>
-    <div class="grid gap-10 md:grid-cols-12 md:gap-8">
+    <div class="grid items-stretch gap-10 md:grid-cols-12 md:gap-8">
       <div class="md:col-span-5" data-reveal data-reveal-delay="90">
         <svg
           data-reveal
@@ -43,12 +43,7 @@ import tccPhoto from '@/assets/photos/tcc-context.jpg';
         <SectionHeading size="h2" class="max-w-[16ch]">
           Um processo para compreender a ansiedade e construir novas formas de lidar com ela.
         </SectionHeading>
-      </div>
-    </div>
-
-    <div class="mt-8 grid items-stretch gap-10 md:grid-cols-12 md:gap-8">
-      <div class="md:col-span-5" data-reveal data-reveal-delay="100">
-        <p class="max-w-[52ch] font-body text-body-lg text-muted">
+        <p class="mt-6 max-w-[52ch] font-body text-body-lg text-muted">
           A Terapia Cognitivo-Comportamental (TCC) é uma abordagem baseada em evidências
           científicas e amplamente reconhecida pela eficácia no tratamento da ansiedade.
         </p>
@@ -69,11 +64,15 @@ import tccPhoto from '@/assets/photos/tcc-context.jpg';
         </p>
       </div>
 
-      <div class="flex flex-col justify-between gap-8 md:col-span-7">
-        <div class="flex items-center justify-center">
-          <QuestionMarkLottie class="w-full max-w-[220px] md:max-w-[260px]" />
+      <div class="flex flex-col gap-6 md:col-span-7">
+        <div
+          data-reveal
+          data-reveal-delay="60"
+          class="flex w-full flex-1 items-center justify-center rounded-image-lg bg-blush/70 p-6"
+        >
+          <QuestionMarkLottie class="w-full max-w-[220px]" />
         </div>
-        <div data-reveal data-reveal-delay="60">
+        <div data-reveal data-reveal-delay="110">
           <CognitiveModelDiagram />
         </div>
       </div>

@@ -7,6 +7,6 @@
 export const SITE_TITLE = 'Gabrielle Favere | Psicóloga Online para Mulheres';
 
 export const SITE_DESCRIPTION =
-  'Psicoterapia online para mulheres com Gabrielle Favere. Atendimento baseado em Terapia Cognitivo-Comportamental, acolhimento, escuta e evidências científicas.';
+  'Psicoterapia para mulheres com Gabrielle Favere. Atendimento baseado em Terapia Cognitivo-Comportamental, acolhimento, escuta e evidências científicas.';
 
 export const SITE_LOCALE = 'pt_BR';
