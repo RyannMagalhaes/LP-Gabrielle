@@ -5,23 +5,23 @@ export interface IdentificationPoint {
 
 export const IDENTIFICATION_POINTS: IdentificationPoint[] = [
   {
-    title: 'Quando a mente não desacelera',
+    title: 'Quando a preocupação não dá trégua',
     description:
-      'Preocupações constantes, pensamentos que parecem não ter fim e dificuldade para relaxar mesmo quando, aparentemente, está tudo bem.',
+      'Pensamentos repetitivos, antecipação de problemas e dificuldade de controlar as preocupações',
   },
   {
-    title: 'Quando você começa a duvidar de si mesma',
+    title: 'Quando seu corpo também sente',
     description:
-      'Comparações, inseguranças, autocrítica e aquela sensação persistente de que você poderia estar fazendo mais — ou sendo melhor.',
+      'Tensão, cansaço, irritabilidade e dificuldade para relaxar ou dormir',
   },
   {
-    title: 'Quando dizer "não" parece difícil demais',
+    title: 'Quando a ansiedade ocupa espaço demais',
     description:
-      'O medo de decepcionar, a necessidade de aprovação e a dificuldade de estabelecer limites podem fazer com que suas próprias necessidades fiquem sempre para depois.',
+      'Autocobrança, dificuldade de se concentrar e a sensação de precisar prever ou controlar tudo.',
   },
   {
-    title: 'Quando tudo começa a pesar',
+    title: 'Quando a ansiedade começa a limitar você',
     description:
-      'Trabalho, estudos, relacionamentos, expectativas e responsabilidades se acumulam até que encontrar espaço para você mesma parece cada vez mais difícil.',
+      'Evitar situações, adiar decisões ou deixar oportunidades de lado por medo de errar ou de não dar conta.',
   },
 ];
