@@ -15,8 +15,7 @@ npm run prepare-assets  # regenera favicons/OG/derivados de marca (ver abaixo)
 ## Pendências antes de publicar (não inventar — ver spec)
 
 - **Fotografias reais** de Gabrielle: já importadas via `astro:assets` em todas as seções
-  (hero, sobre, respiro emocional, CTA final, TCC, processo). `MediaPlaceholder` só é
-  usado hoje pelo poster do vídeo e pelas miniaturas do Instagram, que seguem pendentes.
+  (hero, sobre, respiro emocional, CTA final, TCC, processo, Instagram).
 - **Vídeo de apresentação**: arquivo de teste em `public/video/intro.mp4` (99MB, sem
   compressão) referenciado em `IntroVideoSection.astro`. Antes de publicar: comprimir
   (H.264/VP9, ~5-15MB) e considerar hospedar externamente (Mux, Cloudflare Stream,
@@ -26,9 +25,9 @@ npm run prepare-assets  # regenera favicons/OG/derivados de marca (ver abaixo)
 - **CRP, formação, duração/frequência de sessão, pagamento, disponibilidade,
   depoimentos**: nunca inventados — placeholders explícitos em `AboutSection.astro`,
   `Footer.astro` e `src/data/faq.ts`, aguardando dado real.
-- **Instagram**: link placeholder em `Footer.astro` (TODO marcado no código); miniaturas
-  reais dos posts em `src/data/instagram-posts.ts` ainda não substituíram
-  `MediaPlaceholder`.
+- **Instagram**: miniaturas reais dos 4 posts em `src/data/instagram-posts.ts` /
+  `src/assets/instagram/`. Permalinks por post (`postUrl`) ainda não fornecidos — os
+  cards abrem o perfil geral até que Gabrielle informe os links individuais.
 - **Domínio real**: `astro.config.mjs` (`site`) usa um domínio placeholder — trocar antes
   de habilitar sitemap/canonical definitivos.
 

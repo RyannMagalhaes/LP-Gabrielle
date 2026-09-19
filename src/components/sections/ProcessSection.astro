@@ -2,11 +2,46 @@
 import { Image } from 'astro:assets';
 import Container from '@/components/ui/Container.astro';
 import SectionHeading from '@/components/ui/SectionHeading.astro';
+import DecorativeAsset from '@/components/ui/DecorativeAsset.astro';
 import { PROCESS_STEPS } from '@/data/process-steps';
 import processPhoto from '@/assets/photos/process-remote.jpg';
 ---
 
-<section id="como-funciona" class="overflow-hidden bg-surface-soft py-20 md:py-32">
+<section id="como-funciona" class="relative overflow-hidden bg-surface-soft py-20 md:py-32">
+  <!-- Canvas-to-surface-soft seam marker, same hand-drawn device already
+       used for the CarePrinciples/pillars seam - a division cue, not a
+       new motif. -->
+  <svg
+    data-reveal
+    class="organic-line pointer-events-none absolute inset-x-0 top-0 hidden h-8 w-full md:block"
+    viewBox="0 0 1200 32"
+    preserveAspectRatio="none"
+    aria-hidden="true"
+  >
+    <path
+      pathLength="1"
+      d="M0 20C180 20 240 8 440 12S740 24 880 16 1080 8 1200 14"
+      stroke="var(--color-rose-deep)"
+      stroke-opacity="0.28"
+      stroke-width="1.5"
+      fill="none"
+    />
+  </svg>
+
+  <!-- Left-edge accent, flush with the section's own bottom edge - a
+       different scale/rotation of the salmon tulip already used behind the
+       About photo, not a repeat. -->
+  <div
+    class="pointer-events-none absolute bottom-0 left-2 hidden w-24 opacity-80 xl:block"
+    aria-hidden="true"
+  >
+    <DecorativeAsset
+      variant="tulip-closed-salmon"
+      widthPx={340}
+      class="h-auto w-full -rotate-[14deg]"
+    />
+  </div>
+
   <Container class="grid gap-14 md:grid-cols-12 md:items-end md:gap-10">
     <div class="md:order-1 md:col-span-8">
       <SectionHeading data-reveal size="h2" class="max-w-[16ch]">

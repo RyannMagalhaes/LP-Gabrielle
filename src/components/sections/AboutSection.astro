@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import Container from '@/components/ui/Container.astro';
 import SectionHeading from '@/components/ui/SectionHeading.astro';
+import DecorativeAsset from '@/components/ui/DecorativeAsset.astro';
 import aboutPhoto from '@/assets/photos/about-portrait.jpg';
 ---
 
@@ -30,14 +31,29 @@ import aboutPhoto from '@/assets/photos/about-portrait.jpg';
       </div>
     </div>
 
-    <div data-reveal data-reveal-delay="120" class="md:col-span-5 md:-mr-6">
+    <div data-reveal data-reveal-delay="120" class="relative md:col-span-5 md:-mr-6">
+      <!-- Tulip's base sits flush with the photo's own bottom edge - grounded
+           against it, not floating - while bleeding left past the mask's
+           corner as a bespoke frame, not a sticker on top. -->
+      <div
+        class="pointer-events-none absolute bottom-0 -left-16 w-56 opacity-95 md:-left-28 md:w-80"
+        aria-hidden="true"
+        data-parallax="10"
+      >
+        <DecorativeAsset
+          variant="tulip-closed-salmon"
+          widthPx={640}
+          class="h-auto w-full -rotate-[8deg]"
+        />
+      </div>
+
       <Image
         src={aboutPhoto}
         alt="Gabrielle Favere em seu ambiente de trabalho"
         width={640}
         loading="lazy"
         decoding="async"
-        class="aspect-[3/4] w-full mask-organic-2-flip object-cover object-[50%_28%] md:object-[50%_35%]"
+        class="relative aspect-[3/4] w-full mask-organic-2-flip object-cover object-[50%_28%] md:object-[50%_35%]"
       />
     </div>
   </Container>

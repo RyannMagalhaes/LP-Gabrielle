@@ -2,6 +2,7 @@
 import Container from '@/components/ui/Container.astro';
 import SectionHeading from '@/components/ui/SectionHeading.astro';
 import OrganicShape from '@/components/ui/OrganicShape.astro';
+import DecorativeAsset from '@/components/ui/DecorativeAsset.astro';
 import { CARE_PILLARS } from '@/data/care-pillars';
 
 const baselineShift = ['', 'md:mt-9', ''];
@@ -15,6 +16,20 @@ const widthClass = ['md:max-w-[22ch]', 'md:max-w-[26ch]', 'md:max-w-[30ch]'];
     aria-hidden="true"
   >
     <OrganicShape variant="rose-deep" widthPx={560} class="h-auto w-full rotate-[18deg]" />
+  </div>
+
+  <!-- Bottom-right echo of the top-right blob (same rail, quieter) - kept off
+       the left side so it doesn't double up with TCC's left-entering tulip
+       right after it. -->
+  <div
+    class="pointer-events-none absolute bottom-0 right-3 hidden w-28 opacity-80 xl:block"
+    aria-hidden="true"
+  >
+    <DecorativeAsset
+      variant="tulip-closed-beige"
+      widthPx={400}
+      class="h-auto w-full rotate-[-10deg]"
+    />
   </div>
 
   <Container class="relative">

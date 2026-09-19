@@ -1,7 +1,13 @@
+import type { ImageMetadata } from 'astro';
+import post01 from '@/assets/instagram/post-01.jpg';
+import post02 from '@/assets/instagram/post-02.jpg';
+import post03 from '@/assets/instagram/post-03.jpg';
+import post04 from '@/assets/instagram/post-04.jpg';
+
 export interface InstagramPost {
   id: string;
   caption: string;
-  targetPath: string;
+  image: ImageMetadata;
   /** Real per-post permalink. Leave undefined until Gabrielle supplies it -
    *  never fabricate a per-post URL. Consumers fall back to the profile URL. */
   postUrl?: string;
@@ -10,32 +16,26 @@ export interface InstagramPost {
 export const INSTAGRAM_POSTS: InstagramPost[] = [
   {
     id: 'post-1',
-    caption: 'Publicação em breve — conteúdo sobre saúde emocional.',
-    targetPath: 'src/assets/instagram/post-01.jpg',
+    caption: 'Você não precisa conquistar tudo aos seus 20 e poucos anos 🩷',
+    image: post01,
+    postUrl: 'https://www.instagram.com/p/Dde2iJBhOZx/',
   },
   {
     id: 'post-2',
-    caption: 'Publicação em breve — reflexões sobre o processo terapêutico.',
-    targetPath: 'src/assets/instagram/post-02.jpg',
+    caption: 'Qual história te marcou recentemente? 🩷',
+    image: post02,
+    postUrl: 'https://www.instagram.com/p/DdZMLUxEcJd/',
   },
   {
     id: 'post-3',
-    caption: 'Publicação em breve — bastidores do consultório online.',
-    targetPath: 'src/assets/instagram/post-03.jpg',
+    caption: 'Um pouco da minha história com a psicologia 🩷',
+    image: post03,
+    postUrl: 'https://www.instagram.com/p/DdT_WzjxpOR/',
   },
   {
     id: 'post-4',
-    caption: 'Publicação em breve — conteúdo sobre autoconhecimento.',
-    targetPath: 'src/assets/instagram/post-04.jpg',
-  },
-  {
-    id: 'post-5',
-    caption: 'Publicação em breve — dicas de bem-estar no dia a dia.',
-    targetPath: 'src/assets/instagram/post-05.jpg',
-  },
-  {
-    id: 'post-6',
-    caption: 'Publicação em breve — novidades e avisos.',
-    targetPath: 'src/assets/instagram/post-06.jpg',
+    caption: 'Um pouco sobre quem está por trás desse perfil 🩷',
+    image: post04,
+    postUrl: 'https://www.instagram.com/p/DdRaIqdkaH8/',
   },
 ];

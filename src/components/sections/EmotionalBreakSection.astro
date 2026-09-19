@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import Container from '@/components/ui/Container.astro';
 import OrganicShape from '@/components/ui/OrganicShape.astro';
+import DecorativeAsset from '@/components/ui/DecorativeAsset.astro';
 import emotionalBreakPhoto from '@/assets/photos/emotional-break.jpg';
 ---
 
@@ -74,12 +75,41 @@ import emotionalBreakPhoto from '@/assets/photos/emotional-break.jpg';
       </div>
     </div>
 
-    <p
-      data-reveal
-      data-reveal-delay="120"
-      class="mt-10 max-w-[28ch] font-body text-body-lg italic text-ink md:mt-14 md:max-w-[36ch]"
-    >
-      Você não precisa ter todas as respostas para começar.
-    </p>
+    <div class="relative mt-10 md:mt-14">
+      <!-- The one strategic use of the butterfly: alighting beside the page's
+           quietest emotional line, not repeated anywhere else. -->
+      <div
+        class="butterfly-accent pointer-events-none absolute -top-16 right-0 hidden w-20 opacity-95 sm:block md:-top-20 md:-right-4 md:w-28"
+        aria-hidden="true"
+      >
+        <DecorativeAsset variant="butterfly" widthPx={260} class="h-auto w-full -rotate-[6deg]" />
+      </div>
+
+      <p
+        data-reveal
+        data-reveal-delay="120"
+        class="max-w-[28ch] font-body text-body-lg italic text-ink md:max-w-[36ch]"
+      >
+        Você não precisa ter todas as respostas para começar.
+      </p>
+    </div>
   </Container>
 </section>
+
+<style>
+  /* Slow, almost subconscious settle - never a repeating flutter loop.
+     prefers-reduced-motion is handled globally in base.css. */
+  @keyframes butterfly-settle {
+    0%,
+    100% {
+      transform: translateY(0) rotate(-6deg);
+    }
+    50% {
+      transform: translateY(-5px) rotate(-4deg);
+    }
+  }
+
+  .butterfly-accent {
+    animation: butterfly-settle 7s var(--ease-soft) infinite;
+  }
+</style>
