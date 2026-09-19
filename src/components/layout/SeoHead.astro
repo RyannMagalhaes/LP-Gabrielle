@@ -1,5 +1,7 @@
 ---
-import { SITE_TITLE, SITE_DESCRIPTION, SITE_LOCALE } from '@/lib/seo.config';
+import { SITE_TITLE, SITE_DESCRIPTION, SITE_NAME, SITE_LOCALE } from '@/lib/seo.config';
+import { buildInstagramProfileUrl } from '@/lib/instagram.config';
+import { WHATSAPP_NUMBER } from '@/lib/whatsapp.config';
 
 interface Props {
   title?: string;
@@ -7,25 +9,50 @@ interface Props {
 }
 const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL(`${import.meta.env.BASE_URL}og-image.png`, Astro.site);
+
+// Only fields confirmed elsewhere in the codebase go here (name, CRP, url,
+// telephone, Instagram) - see seo.config.ts note on not inventing address or
+// reviews until the client confirms them.
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Gabrielle Favere',
+  jobTitle: 'Psicóloga',
+  description: SITE_DESCRIPTION,
+  url: canonicalURL.toString(),
+  image: ogImageURL.toString(),
+  sameAs: [buildInstagramProfileUrl()],
+  identifier: 'CRP 04/87688',
+  telephone: `+${WHATSAPP_NUMBER}`,
+  knowsAbout: ['Terapia Cognitivo-Comportamental', 'Psicoterapia para mulheres'],
+};
 ---
 
 <title>{title}</title>
 <meta name="description" content={description} />
+<meta name="robots" content="index, follow" />
 <link rel="canonical" href={canonicalURL} />
 
 <meta property="og:type" content="website" />
+<meta property="og:site_name" content={SITE_NAME} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonicalURL} />
-<meta property="og:image" content={new URL(`${import.meta.env.BASE_URL}og-image.png`, Astro.site)} />
+<meta property="og:image" content={ogImageURL} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={title} />
 <meta property="og:locale" content={SITE_LOCALE} />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
-<meta name="twitter:image" content={new URL(`${import.meta.env.BASE_URL}og-image.png`, Astro.site)} />
+<meta name="twitter:image" content={ogImageURL} />
 
 <link rel="icon" type="image/png" sizes="32x32" href={`${import.meta.env.BASE_URL}favicon-32.png`} />
 <link rel="icon" type="image/png" sizes="16x16" href={`${import.meta.env.BASE_URL}favicon-16.png`} />
 <link rel="apple-touch-icon" href={`${import.meta.env.BASE_URL}apple-touch-icon.png`} />
 <link rel="manifest" href={`${import.meta.env.BASE_URL}site.webmanifest`} />
+
+<script type="application/ld+json" set:html={JSON.stringify(personJsonLd)} />

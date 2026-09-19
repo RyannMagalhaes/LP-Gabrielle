@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@tailwindcss/vite';
+import sitemap from '@astrojs/sitemap';
 
 // public/CNAME + Pages custom domain are wired for gabriellelp.com.br, but the
 // DNS isn't pointed there yet - the site is only actually reachable at the
@@ -13,6 +14,7 @@ export default defineConfig({
   site: SITE_URL,
   base: BASE_PATH,
   output: 'static',
+  integrations: [sitemap()],
   vite: {
     plugins: [tailwind()],
   },

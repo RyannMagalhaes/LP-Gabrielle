@@ -1,12 +1,15 @@
 /**
  * Provisional SEO metadata per LANDING_PAGE_SPEC_Gabrielle_Favere.md section 25.
- * No schema.org / structured data until real business info (address, reviews,
- * credentials) is confirmed - do not invent it.
+ * The Person JSON-LD in SeoHead.astro only uses fields already confirmed
+ * elsewhere in the codebase (name, CRP, telephone, Instagram) - do not add
+ * address or reviews until the client confirms them.
  */
 
 export const SITE_TITLE = 'Gabrielle Favere | Psicóloga Online para Mulheres';
 
 export const SITE_DESCRIPTION =
   'Psicoterapia para mulheres com Gabrielle Favere. Atendimento baseado em Terapia Cognitivo-Comportamental, acolhimento, escuta e evidências científicas.';
+
+export const SITE_NAME = 'Gabrielle Favere Psicologia';
 
 export const SITE_LOCALE = 'pt_BR';

@@ -15,6 +15,7 @@
     "prepare-assets": "node scripts/prepare-brand-assets.mjs"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
     "@fontsource/bricolage-grotesque": "^5.1.1",
     "@fontsource/newsreader": "^5.1.1",
     "@lucide/astro": "^1.42.0",

@@ -1,2 +1,7 @@
 User-agent: *
 Allow: /
+
+# TODO: update to https://gabriellelp.com.br/sitemap-index.xml once DNS
+# resolves and astro.config.mjs SITE_URL/BASE_PATH switch over (see that
+# file's TODO).
+Sitemap: https://ryannmagalhaes.github.io/LP-Gabrielle/sitemap-index.xml

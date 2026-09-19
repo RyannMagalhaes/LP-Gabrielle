@@ -1,12 +1,9 @@
 /**
  * Single source of truth for WhatsApp CTAs across the site.
  * Never hardcode a wa.me URL anywhere else - always go through buildWhatsAppUrl().
- *
- * TODO: replace WHATSAPP_NUMBER with Gabrielle's real number (E.164, digits only,
- * no "+" - e.g. "5511999999999") once it's provided.
  */
 
-export const WHATSAPP_NUMBER = '5500000000000';
+export const WHATSAPP_NUMBER = '553484029547';
 
 export const WHATSAPP_DEFAULT_MESSAGE =
   'Olá, Gabrielle! Conheci seu trabalho pelo site e gostaria de saber mais sobre a psicoterapia online.';
