@@ -1,26 +1,11 @@
 ---
-import { Image } from 'astro:assets';
 import Container from '@/components/ui/Container.astro';
 import SectionHeading from '@/components/ui/SectionHeading.astro';
 import CognitiveModelDiagram from '@/components/ui/CognitiveModelDiagram.astro';
 import QuestionMarkLottie from '@/components/ui/QuestionMarkLottie.astro';
-import tccPhoto from '@/assets/photos/tcc-context.jpg';
 ---
 
 <section class="overflow-hidden py-20 md:py-32">
-  <Container>
-    <div data-reveal class="mb-14 md:mb-20">
-      <Image
-        src={tccPhoto}
-        alt="Gabrielle estudando em ambiente de trabalho acolhedor"
-        width={1400}
-        loading="lazy"
-        decoding="async"
-        class="aspect-[16/9] w-full rounded-image-lg object-cover object-[30%_40%] md:aspect-[21/9] md:object-[35%_45%]"
-      />
-    </div>
-  </Container>
-
   <Container>
     <div class="grid items-stretch gap-10 md:grid-cols-12 md:gap-8">
       <div class="md:col-span-5" data-reveal data-reveal-delay="90">
