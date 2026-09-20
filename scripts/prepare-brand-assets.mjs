@@ -96,22 +96,25 @@ async function generateDerivedSymbols() {
  * fills a fraction of the image bounds. Rendered at compact web sizes (the
  * header logo, the compact mobile mark) that clear-space reads as "the logo
  * is tiny" - it isn't undersized, the source canvas is mostly transparent.
- * These trims are ONLY for those two compact-UI uses; every other OrganicShape
- * placement (Hero/FinalCta corner marks, CarePrinciples blob, MediaPlaceholder
- * watermark) was sized and positioned against the untouched padded source and
- * must keep using it unchanged.
+ * The rose-deep trim exists for the small corner accents (Hero/FinalCta/
+ * EmotionalBreak) that need the complete mark to read inside a small
+ * overflow-hidden window - cropping the padded source there was cutting
+ * through the ink itself, not just the clear-space.
  */
-async function generateTrimmedLogoAssets(inkBuffer) {
+async function generateTrimmedLogoAssets(inkBuffer, roseDeepBuffer) {
   const trimmedLogo = await sharp(LOGO_VERTICAL).trim().png().toBuffer();
   const trimmedSymbol = await sharp(inkBuffer).trim().png().toBuffer();
+  const trimmedRoseDeep = await sharp(roseDeepBuffer).trim().png().toBuffer();
 
   await sharp(trimmedLogo).toFile(path.join(ASSETS_DERIVED, 'logo-vertical-trimmed.png'));
   await sharp(trimmedSymbol).toFile(path.join(ASSETS_DERIVED, 'symbol-ink-trimmed.png'));
+  await sharp(trimmedRoseDeep).toFile(path.join(ASSETS_DERIVED, 'symbol-rose-deep-trimmed.png'));
 
   await sharp(trimmedLogo).toFile(path.join(SRC_DERIVED, 'logo-vertical-trimmed.png'));
   await sharp(trimmedSymbol).toFile(path.join(SRC_DERIVED, 'symbol-ink-trimmed.png'));
+  await sharp(trimmedRoseDeep).toFile(path.join(SRC_DERIVED, 'symbol-rose-deep-trimmed.png'));
 
-  console.log('Generated trimmed logo/symbol (clear-space cropped) for compact UI use.');
+  console.log('Generated trimmed logo/symbol/rose-deep (clear-space cropped) for compact UI use.');
 }
 
 async function generateFavicons(inkBuffer) {
@@ -170,8 +173,8 @@ async function generateOgImage(inkBuffer) {
 async function main() {
   await ensureDirs();
   await copyOfficialPngs();
-  const { inkBuffer } = await generateDerivedSymbols();
-  await generateTrimmedLogoAssets(inkBuffer);
+  const { inkBuffer, roseDeepBuffer } = await generateDerivedSymbols();
+  await generateTrimmedLogoAssets(inkBuffer, roseDeepBuffer);
   await generateFavicons(inkBuffer);
   await generateOgImage(inkBuffer);
   console.log('\nBrand asset prep complete.');

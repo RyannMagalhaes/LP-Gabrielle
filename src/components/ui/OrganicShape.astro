@@ -7,16 +7,27 @@
 import { Image } from 'astro:assets';
 import symbolInk from '@/assets/brand-derived/symbol-ink.png';
 import symbolRoseDeep from '@/assets/brand-derived/symbol-rose-deep.png';
+import symbolRoseDeepTrimmed from '@/assets/brand-derived/symbol-rose-deep-trimmed.png';
 
 interface Props {
   variant?: 'ink' | 'rose-deep';
   class?: string;
   widthPx?: number;
   loading?: 'eager' | 'lazy';
+  // Clear-space-cropped source - use inside a small window where the full
+  // mark must read completely, instead of the padded source's usual partial
+  // reveal. Only exists for rose-deep today (the corner-accent color).
+  trimmed?: boolean;
 }
 
-const { variant = 'ink', class: className = '', widthPx = 320, loading = 'lazy' } = Astro.props;
-const src = variant === 'rose-deep' ? symbolRoseDeep : symbolInk;
+const {
+  variant = 'ink',
+  class: className = '',
+  widthPx = 320,
+  loading = 'lazy',
+  trimmed = false,
+} = Astro.props;
+const src = trimmed ? symbolRoseDeepTrimmed : variant === 'rose-deep' ? symbolRoseDeep : symbolInk;
 ---
 
 <Image
