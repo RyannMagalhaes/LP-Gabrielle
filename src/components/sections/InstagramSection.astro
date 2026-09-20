@@ -125,11 +125,15 @@ const profileUrl = buildInstagramProfileUrl();
       return firstCard.getBoundingClientRect().width + gap;
     }
 
-    function updateButtons() {
+    function updateLayout() {
       if (!track) return;
       const maxScroll = track.scrollWidth - track.clientWidth;
-      prevBtn!.disabled = track.scrollLeft <= 1;
-      nextBtn!.disabled = track.scrollLeft >= maxScroll - 1;
+      // When every card already fits, center the row instead of leaving it
+      // pinned to the left with dead space on the right.
+      const fits = maxScroll <= 1;
+      track.classList.toggle('justify-center', fits);
+      prevBtn!.disabled = fits || track.scrollLeft <= 1;
+      nextBtn!.disabled = fits || track.scrollLeft >= maxScroll - 1;
     }
 
     prevBtn.addEventListener('click', () => {
@@ -140,8 +144,9 @@ const profileUrl = buildInstagramProfileUrl();
       track.scrollBy({ left: step(), behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
     });
 
-    track.addEventListener('scroll', updateButtons, { passive: true });
-    updateButtons();
+    track.addEventListener('scroll', updateLayout, { passive: true });
+    window.addEventListener('resize', updateLayout, { passive: true });
+    updateLayout();
   }
 </script>
 

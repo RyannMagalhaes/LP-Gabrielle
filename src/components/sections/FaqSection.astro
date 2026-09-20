@@ -2,6 +2,7 @@
 import Container from '@/components/ui/Container.astro';
 import SectionHeading from '@/components/ui/SectionHeading.astro';
 import Accordion from '@/components/ui/Accordion.astro';
+import DecorativeAsset from '@/components/ui/DecorativeAsset.astro';
 import { FAQ_ITEMS } from '@/data/faq';
 ---
 
@@ -27,6 +28,18 @@ import { FAQ_ITEMS } from '@/data/faq';
       <SectionHeading data-reveal size="h2" class="max-w-[16ch]">
         Talvez você ainda tenha algumas dúvidas.
       </SectionHeading>
+
+      <!-- Occupies the empty space this column leaves once the accordion
+           (taller, right column) outgrows it - base flush with the column's
+           own bottom edge. -->
+      <div
+        data-reveal
+        data-reveal-delay="200"
+        class="pointer-events-none absolute bottom-0 left-1 hidden w-56 opacity-90 md:block lg:w-72"
+        aria-hidden="true"
+      >
+        <DecorativeAsset variant="butterfly" widthPx={640} class="h-auto w-full -rotate-[8deg]" />
+      </div>
     </div>
 
     <div data-reveal data-reveal-delay="100" class="mt-10 md:col-span-8 md:mt-0">
