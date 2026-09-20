@@ -31,7 +31,7 @@ const { items } = Astro.props;
 </script>
 
 <style>
-  .accordion-panel.is-open {
+  :global(.accordion-panel.is-open) {
     grid-template-rows: 1fr;
   }
   :global(.accordion-trigger[aria-expanded='true']) .accordion-chevron {

@@ -1,27 +1,25 @@
 ---
+import { Image } from 'astro:assets';
 import Container from '@/components/ui/Container.astro';
 import SectionHeading from '@/components/ui/SectionHeading.astro';
 import CognitiveModelDiagram from '@/components/ui/CognitiveModelDiagram.astro';
 import QuestionMarkLottie from '@/components/ui/QuestionMarkLottie.astro';
-import DecorativeAsset from '@/components/ui/DecorativeAsset.astro';
+import tccPhoto from '@/assets/photos/tcc-context.jpg';
 ---
 
-<section class="relative overflow-hidden py-20 md:py-32">
-  <!-- Fills the void left by the removed top photo with a single confident
-       botanical moment instead of a like-for-like replacement image - bleeds
-       off the section's left edge, cropped by overflow-hidden above, rooted
-       at the section's own bottom edge rather than floating mid-air. -->
-  <div
-    class="pointer-events-none absolute -left-[300px] bottom-0 hidden w-[380px] opacity-90 lg:block xl:-left-[330px] xl:w-[440px]"
-    aria-hidden="true"
-    data-parallax="12"
-  >
-    <DecorativeAsset
-      variant="tulip-open-green"
-      widthPx={800}
-      class="h-auto w-full -rotate-[5deg]"
-    />
-  </div>
+<section class="overflow-hidden py-20 md:py-32">
+  <Container>
+    <div data-reveal class="mb-14 md:mb-20">
+      <Image
+        src={tccPhoto}
+        alt="Gabrielle estudando em ambiente de trabalho acolhedor"
+        width={1400}
+        loading="lazy"
+        decoding="async"
+        class="aspect-[16/9] w-full rounded-image-lg object-cover object-[30%_40%] md:aspect-[21/9] md:object-[35%_45%]"
+      />
+    </div>
+  </Container>
 
   <Container>
     <div class="grid items-stretch gap-10 md:grid-cols-12 md:gap-8">
