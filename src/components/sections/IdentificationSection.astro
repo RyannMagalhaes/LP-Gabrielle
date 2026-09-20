@@ -1,11 +1,8 @@
 ---
-import { Image } from 'astro:assets';
 import Container from '@/components/ui/Container.astro';
 import SectionHeading from '@/components/ui/SectionHeading.astro';
 import OrganicShape from '@/components/ui/OrganicShape.astro';
-import DecorativeAsset from '@/components/ui/DecorativeAsset.astro';
 import { IDENTIFICATION_POINTS } from '@/data/identification-points';
-import identificationPhoto from '@/assets/photos/identification.jpg';
 
 const indentClass = ['md:ml-0 md:text-left', 'md:ml-10 md:text-left', 'md:ml-0 md:text-left', 'md:ml-20 md:text-left'];
 const textAlignMobile = ['text-left', 'text-right', 'text-left', 'text-right'];
@@ -94,31 +91,5 @@ const gapClass = ['', 'mt-14 md:mt-16', 'mt-10 md:mt-12', 'mt-16 md:mt-20'];
       Você não precisa esperar que tudo se torne insuportável para começar a olhar para o
       que sente.
     </p>
-
-    <div data-reveal class="relative mt-14 md:mt-20">
-      <!-- Bleeds from the page's left edge, base flush with the photo's own
-           bottom edge - grounded against it, balancing the right rail's
-           rings above. -->
-      <div
-        class="pointer-events-none absolute bottom-0 hidden w-44 opacity-90 xl:-left-28 xl:block xl:w-60"
-        aria-hidden="true"
-        data-parallax="14"
-      >
-        <DecorativeAsset
-          variant="tulip-open-salmon"
-          widthPx={520}
-          class="h-auto w-full -rotate-[4deg]"
-        />
-      </div>
-
-      <Image
-        src={identificationPhoto}
-        alt="Gabrielle em ambiente de trabalho acolhedor"
-        width={1400}
-        loading="lazy"
-        decoding="async"
-        class="relative aspect-[16/9] w-full rounded-image-lg object-cover object-[30%_40%] md:aspect-[21/9] md:object-[35%_45%]"
-      />
-    </div>
   </Container>
 </section>
