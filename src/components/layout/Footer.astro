@@ -1,7 +1,6 @@
 ---
 import Container from '@/components/ui/Container.astro';
 import Logo from '@/components/ui/Logo.astro';
-import DecorativeAsset from '@/components/ui/DecorativeAsset.astro';
 import { NAV_LINKS } from '@/data/nav-links';
 import { buildWhatsAppUrl } from '@/lib/whatsapp.config';
 import { buildInstagramProfileUrl } from '@/lib/instagram.config';
@@ -12,17 +11,6 @@ const year = new Date().getFullYear();
 ---
 
 <footer class="relative overflow-hidden border-t border-border bg-canvas py-16">
-  <!-- Closing bookend: a single quiet tulip, echoing the hero's opening
-       brand-mark accent - base flush with the footer's own bottom edge so
-       it reads as rooted there, not floating past the corner. Shifted clear
-       of the fixed floating WhatsApp button parked in that same corner. -->
-  <div
-    class="pointer-events-none absolute bottom-0 right-20 hidden w-[170px] opacity-80 md:block lg:right-24 lg:w-[200px]"
-    aria-hidden="true"
-  >
-    <DecorativeAsset variant="tulip-closed-beige" widthPx={380} class="h-auto w-full rotate-[10deg]" />
-  </div>
-
   <Container class="relative">
     <div class="grid gap-10 md:grid-cols-3">
       <div>

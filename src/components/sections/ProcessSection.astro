@@ -2,7 +2,6 @@
 import { Image } from 'astro:assets';
 import Container from '@/components/ui/Container.astro';
 import SectionHeading from '@/components/ui/SectionHeading.astro';
-import DecorativeAsset from '@/components/ui/DecorativeAsset.astro';
 import { PROCESS_STEPS } from '@/data/process-steps';
 import processPhoto from '@/assets/photos/process-remote.jpg';
 ---
@@ -27,20 +26,6 @@ import processPhoto from '@/assets/photos/process-remote.jpg';
       fill="none"
     />
   </svg>
-
-  <!-- Left-edge accent, flush with the section's own bottom edge - a
-       different scale/rotation of the salmon tulip already used behind the
-       About photo, not a repeat. -->
-  <div
-    class="pointer-events-none absolute bottom-0 left-2 hidden w-24 opacity-80 xl:block"
-    aria-hidden="true"
-  >
-    <DecorativeAsset
-      variant="tulip-closed-salmon"
-      widthPx={340}
-      class="h-auto w-full -rotate-[14deg]"
-    />
-  </div>
 
   <Container class="grid gap-14 md:grid-cols-12 md:items-end md:gap-10">
     <div class="md:order-1 md:col-span-8">

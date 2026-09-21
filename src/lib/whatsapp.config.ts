@@ -6,7 +6,7 @@
 export const WHATSAPP_NUMBER = '553484029547';
 
 export const WHATSAPP_DEFAULT_MESSAGE =
-  'Olá, Gabrielle! Conheci seu trabalho pelo site e gostaria de saber mais sobre a psicoterapia online.';
+  'Olá, Gabrielle! Conheci seu trabalho pelo site e gostaria de saber mais sobre a psicoterapia.';
 
 export type WhatsAppContext = 'header' | 'hero' | 'final-cta' | 'floating-button';
 

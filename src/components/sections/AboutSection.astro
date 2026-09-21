@@ -2,28 +2,12 @@
 import { Image } from 'astro:assets';
 import Container from '@/components/ui/Container.astro';
 import SectionHeading from '@/components/ui/SectionHeading.astro';
-import DecorativeAsset from '@/components/ui/DecorativeAsset.astro';
 import identificationPhoto from '@/assets/photos/identification.jpg';
 ---
 
 <section id="sobre" class="overflow-hidden py-20 md:py-32">
   <Container>
     <div data-reveal class="relative mb-14 md:mb-20">
-      <!-- Base flush with the photo's own bottom edge, bleeding past its
-           right corner into the container gutter - grounded against it,
-           not floating. -->
-      <div
-        class="pointer-events-none absolute -bottom-10 -right-14 w-40 opacity-95 md:-bottom-16 md:-right-24 md:w-64"
-        aria-hidden="true"
-        data-parallax="10"
-      >
-        <DecorativeAsset
-          variant="tulip-closed-salmon"
-          widthPx={560}
-          class="h-auto w-full rotate-[9deg]"
-        />
-      </div>
-
       <Image
         src={identificationPhoto}
         alt="Gabrielle em ambiente de trabalho acolhedor"

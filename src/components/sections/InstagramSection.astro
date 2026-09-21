@@ -4,7 +4,6 @@ import SectionHeading from '@/components/ui/SectionHeading.astro';
 import InstagramPostCard from '@/components/ui/InstagramPostCard.astro';
 import ChevronIcon from '@/components/ui/icons/ChevronIcon.astro';
 import InstagramIcon from '@/components/ui/icons/InstagramIcon.astro';
-import DecorativeAsset from '@/components/ui/DecorativeAsset.astro';
 import { buildInstagramProfileUrl, INSTAGRAM_HANDLE } from '@/lib/instagram.config';
 import { INSTAGRAM_POSTS } from '@/data/instagram-posts';
 
@@ -33,21 +32,6 @@ const profileUrl = buildInstagramProfileUrl();
 
   <Container>
     <div class="relative">
-      <!-- Right-edge accent, base flush with the text block's own bottom
-           edge - the text column's 46ch measure leaves this margin empty on
-           wide screens, same idea as Differentials, different asset. Kept
-           up here (not section-bottom) to stay well clear of the follow CTA. -->
-      <div
-        class="pointer-events-none absolute bottom-0 right-0 hidden w-28 opacity-80 xl:block"
-        aria-hidden="true"
-      >
-        <DecorativeAsset
-          variant="tulip-open-green"
-          widthPx={400}
-          class="h-auto w-full rotate-[9deg]"
-        />
-      </div>
-
       <div data-reveal class="max-w-[46ch]">
         <SectionHeading size="h2" class="max-w-[16ch]">
           Um espaço para reflexões do dia a dia.

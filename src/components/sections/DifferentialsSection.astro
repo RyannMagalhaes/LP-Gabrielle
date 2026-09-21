@@ -2,27 +2,11 @@
 import { Image } from 'astro:assets';
 import Container from '@/components/ui/Container.astro';
 import SectionHeading from '@/components/ui/SectionHeading.astro';
-import DecorativeAsset from '@/components/ui/DecorativeAsset.astro';
 import { DIFFERENTIALS } from '@/data/differentials';
 import differentialsPhoto from '@/assets/photos/differentials.jpg';
 ---
 
 <section id="diferenciais" class="relative py-20 md:py-32">
-  <!-- Right-edge accent, mirroring the left-edge one two sections up - the
-       list's 46ch measure leaves the far right margin empty on wide screens.
-       Rooted at the section's bottom edge rather than floating mid-air. -->
-  <div
-    class="pointer-events-none absolute bottom-0 right-2 hidden w-36 opacity-80 xl:block"
-    aria-hidden="true"
-    data-parallax="10"
-  >
-    <DecorativeAsset
-      variant="tulip-open-beige"
-      widthPx={500}
-      class="h-auto w-full rotate-[7deg]"
-    />
-  </div>
-
   <Container class="grid gap-12 md:grid-cols-12 md:items-center md:gap-8">
     <div data-reveal class="md:order-1 md:col-span-5">
       <Image
