@@ -5,7 +5,7 @@
  * address or reviews until the client confirms them.
  */
 
-export const SITE_TITLE = 'Gabrielle Favere | Psicóloga Online para Mulheres';
+export const SITE_TITLE = 'Gabrielle Favere | Psicóloga TCC para Ansiedade em Uberlândia';
 
 export const SITE_DESCRIPTION =
   'Psicoterapia para mulheres com Gabrielle Favere. Atendimento baseado em Terapia Cognitivo-Comportamental, acolhimento, escuta e evidências científicas.';
