@@ -29,7 +29,7 @@ const SRC_BRAND = path.join(ROOT, 'src', 'assets', 'brand');
 const SRC_DERIVED = path.join(ROOT, 'src', 'assets', 'brand-derived');
 const PUBLIC = path.join(ROOT, 'public');
 
-const LOGO_VERTICAL = path.join(ASSETS_BRAND, 'Logo', 'Verde_VerticalPNG_RGB.png');
+const LOGO_VERTICAL = path.join(ASSETS_BRAND, 'Logo', 'LOGO-ROSA.png');
 const SYMBOL_SOURCE = path.join(
   ASSETS_BRAND,
   'Symbol',
@@ -48,7 +48,7 @@ async function ensureDirs() {
 }
 
 async function copyOfficialPngs() {
-  await copyFile(LOGO_VERTICAL, path.join(SRC_BRAND, 'logo', 'Verde_VerticalPNG_RGB.png'));
+  await copyFile(LOGO_VERTICAL, path.join(SRC_BRAND, 'logo', 'LOGO-ROSA.png'));
   await copyFile(
     path.join(ASSETS_BRAND, 'Symbol', 'Verde_Rosa_HorizontalSímbolo_PNG_RGB.png'),
     path.join(SRC_BRAND, 'symbol', 'Verde_Rosa_HorizontalSímbolo_PNG_RGB.png')
